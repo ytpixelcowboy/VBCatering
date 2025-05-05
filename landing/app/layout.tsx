@@ -49,16 +49,16 @@ export default function RootLayout({
               <p className="text-black font-black">Legal Pages</p>
               <ul className="list-none text-black mt-5 space-y-4">
                 <li>
-                  <a href="/legalbullshit" className="text-black underline">{"Terms and Condition"}</a>
+                  <a href="/legal" className="text-black underline">{"Terms and Condition"}</a>
                 </li>
                 <li>
-                  <a href="/legalbullshit" className="text-black underline">{"Privacy"}</a>
+                  <a href="/legal" className="text-black underline">{"Privacy"}</a>
                 </li>
                 <li>
-                  <a href="/legalbullshit" className="text-black underline">{"Cookies"}</a>
+                  <a href="/legal" className="text-black underline">{"Cookies"}</a>
                 </li>
                 <li>
-                  <a href="/legalbullshit" className="text-black underline">{"Ethical Responsibility"}</a>
+                  <a href="/legal" className="text-black underline">{"Ethical Responsibility"}</a>
                 </li>
               </ul>
             </div>
@@ -66,10 +66,10 @@ export default function RootLayout({
               <p className="text-black font-black">Important Links</p>
               <ul className="list-none text-black mt-5 space-y-4">
                 <li>
-                  <a href="/legalbullshit" className="text-black underline">{"Terms and Condition"}</a>
+                  <a href="/legal" className="text-black underline">{"Terms and Condition"}</a>
                 </li>
                 <li>
-                  <a href="/legalbullshit" className="text-black underline">{"Get Help"}</a>
+                  <a href="/legal" className="text-black underline">{"Get Help"}</a>
                 </li>
 
               </ul>
