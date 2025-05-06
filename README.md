@@ -9,10 +9,20 @@
 
 To run **Landing**
 
-<code> npm install </code>
+```bash
+npm install
+npm run dev
+```
 
-<code> npm run dev </code>
 
 To run **backend**
 
-<code> go run main.go </code>
+```bash
+go run main.go
+```
+
+To run **client**
+
+```bash
+npx expo start
+```
