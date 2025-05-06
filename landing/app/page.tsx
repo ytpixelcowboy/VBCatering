@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="w-full min-h-screen mx-auto flex flex-col items-center bg-white">
+    <main className="w-full min-h-screen mx-auto flex flex-col items-center bg-white font-sans">
       <div className="w-full max-w-[1280px] min-h-[50px] flex flex-row items-center justify-between p-5">
         <Image
           src="/images/banner.png"
@@ -13,7 +13,7 @@ export default function Home() {
           className="object-contain"
         />
         <div className="w-fit">
-          <nav className="Linkst-none flex flex-row items-center space-x-6 text-black font-black">
+          <nav className="Linkst-none flex flex-row items-center space-x-6 text-black font-bold">
             <Link className="rounded-3xl py-2 px-5 bg-[#A0C878] text-white" href={"/"}>Home</Link>
             <Link href={"/menu"}>Menu</Link>
             <Link href={"/packages"}>Package</Link>

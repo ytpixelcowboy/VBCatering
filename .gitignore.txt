@@ -1,3 +1,0 @@
-Backend/
-landing/node_modules
-landing/.next

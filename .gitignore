@@ -1,0 +1,10 @@
+#backend
+
+#client
+client/.expo
+client/node_modules
+
+
+#landing
+landing/node_modules
+landing/.next

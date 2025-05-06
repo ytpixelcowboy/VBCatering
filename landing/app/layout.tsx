@@ -30,58 +30,61 @@ export default function RootLayout({
       >
         {children}
         <footer className="w-full">
-        <div className="w-full flex flex-row items-center justify-between bg-[#D9D9D9] p-10">
-          <div className="w-[600px] flex flex-col items-center justify-center">
-            <Image
-              src="/images/banner.png"
-              alt="Logo"
-              width={300}
-              height={300}
-              className="object-contain"
-            />
-            <div className="w-fit flex flex-row items-center space-x-5">
-              <div className="px-5 py-2 bg-black rounded-xl">{"Playstore"}</div>
-              <div className="px-5 py-2 bg-black rounded-xl">{"Apple Store"}</div>
-            </div>
-          </div>
-          <div className="w-fit flex flex-row justify-between px-20">
-            <div className="min-w-[300px] flex flex-col">
-              <p className="text-black font-black">Legal Pages</p>
-              <ul className="list-none text-black mt-5 space-y-4">
-                <li>
-                  <a href="/legal" className="text-black underline">{"Terms and Condition"}</a>
-                </li>
-                <li>
-                  <a href="/legal" className="text-black underline">{"Privacy"}</a>
-                </li>
-                <li>
-                  <a href="/legal" className="text-black underline">{"Cookies"}</a>
-                </li>
-                <li>
-                  <a href="/legal" className="text-black underline">{"Ethical Responsibility"}</a>
-                </li>
-              </ul>
-            </div>
-            <div className="min-w-[300px] flex flex-col">
-              <p className="text-black font-black">Important Links</p>
-              <ul className="list-none text-black mt-5 space-y-4">
-                <li>
-                  <a href="/legal" className="text-black underline">{"Terms and Condition"}</a>
-                </li>
-                <li>
-                  <a href="/legal" className="text-black underline">{"Get Help"}</a>
-                </li>
+          <div className="w-full bg-[#D9D9D9] p-10 flex flex-col items-center">
+            <div className="w-full max-w-[1280px] flex flex-row items-center justify-between">
+              <div className="w-[500px] ">
+                <Image
+                  src="/images/banner.png"
+                  alt="Logo"
+                  width={300}
+                  height={300}
+                  className="object-contain ml-5"
+                />
+                <div className="w-fit flex flex-row items-center space-x-5">
+                  <div className="px-5 py-2 bg-black rounded-xl">{"Playstore"}</div>
+                  <div className="px-5 py-2 bg-black rounded-xl">{"Apple Store"}</div>
+                </div>
+              </div>
+              <div className="w-fit flex flex-row justify-between">
+                <div className="min-w-[300px] flex flex-col">
+                  <p className="text-black font-black">Legal Pages</p>
+                  <ul className="list-none text-black mt-5 space-y-4">
+                    <li>
+                      <a href="/legal" className="text-black underline">{"Terms and Condition"}</a>
+                    </li>
+                    <li>
+                      <a href="/legal" className="text-black underline">{"Privacy"}</a>
+                    </li>
+                    <li>
+                      <a href="/legal" className="text-black underline">{"Cookies"}</a>
+                    </li>
+                    <li>
+                      <a href="/legal" className="text-black underline">{"Ethical Responsibility"}</a>
+                    </li>
+                  </ul>
+                </div>
+                <div className="min-w-[300px] flex flex-col">
+                  <p className="text-black font-black">Important Links</p>
+                  <ul className="list-none text-black mt-5 space-y-4">
+                    <li>
+                      <a href="/legal" className="text-black underline">{"Terms and Condition"}</a>
+                    </li>
+                    <li>
+                      <a href="/legal" className="text-black underline">{"Get Help"}</a>
+                    </li>
 
-              </ul>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="w-full h-[60px] bg-[#A0C878] flex flex-col items-center justify-center">
-          <p className="w-full max-w-[1280px] text-lg font-medium text-white">Copyright 2024, All Rights Reserved.</p>
-        </div>
-      </footer>
+
+          <div className="w-full h-[60px] bg-[#A0C878] flex flex-col items-center justify-center">
+            <p className="w-full max-w-[1280px] text-lg font-medium text-white">Copyright 2024, All Rights Reserved.</p>
+          </div>
+        </footer>
       </body>
-      
+
     </html>
   );
 }
