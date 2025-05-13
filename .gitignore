@@ -2,7 +2,6 @@
 
 #client
 client/.expo
-client/node_modules
 # dependencies
 client/node_modules/
 # Expo
