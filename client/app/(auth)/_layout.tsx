@@ -7,6 +7,7 @@ const RootLayout = () => {
 
     return (
         <Stack screenOptions={{ headerShown: false }}>
+            <StatusBar barStyle={"dark-content"} />
             <Stack.Screen name='login'/>
             <Stack.Screen name='signin' />
         </Stack>

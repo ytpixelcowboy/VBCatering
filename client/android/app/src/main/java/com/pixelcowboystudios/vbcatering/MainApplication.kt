@@ -12,7 +12,6 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.load
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.soloader.OpenSourceMergedSoMapping
 import com.facebook.soloader.SoLoader
-import com.viromedia.bridge.ReactViroPackage
 
 import expo.modules.ApplicationLifecycleDispatcher
 import expo.modules.ReactNativeHostWrapper
@@ -26,9 +25,6 @@ class MainApplication : Application(), ReactApplication {
             val packages = PackageList(this).packages
             // Packages that cannot be autolinked yet can be added manually here, for example:
             // packages.add(new MyReactNativePackage());
-
-            //Viro stuff
-            add(ReactViroPackage(ReactViroPackage.ViroPlatform.valueOf("AR")))
             return packages
           }
 
@@ -36,12 +32,6 @@ class MainApplication : Application(), ReactApplication {
 
           override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
 
-          override val isNewArchEnabled: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
-          override val isHermesEnabled: Boolean = BuildConfig.IS_HERMES_ENABLED
-
-          //Viro Stuff
-          override fun getJSMainModuleName(): String = "index"
-          override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
           override val isNewArchEnabled: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
           override val isHermesEnabled: Boolean = BuildConfig.IS_HERMES_ENABLED
       }

@@ -1,6 +1,7 @@
-import { SplashScreen, Stack } from "expo-router";
+import { router, SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useFonts } from 'expo-font';
+import { StatusBar } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -15,11 +16,13 @@ export default function RootLayout() {
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
+      router.replace("/(auth)/login");
     }
   }, [loaded]);
 
   return (
     <Stack>
+      <StatusBar barStyle={"dark-content"} />
       <Stack.Screen name='(auth)' options={{ headerShown: false }} />
     </Stack>
   );
