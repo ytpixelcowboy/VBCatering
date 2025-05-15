@@ -10,9 +10,11 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 const login = () => {
     return (
-        <SafeAreaProvider>
+        <SafeAreaProvider style={{backgroundColor: "#f9f9f9"}}>
             <SafeAreaView style={{ flex: 1 }} collapsable={true}>
-                <ScrollView style={{ width: "100%" }}>
+                <ScrollView style={{ 
+                    width: "100%" 
+                    }}>
                     <View style={{ ...gstyles.container, ...gstyles.container_center }}>
                         <Image
                             style={{

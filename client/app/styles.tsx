@@ -3,8 +3,7 @@ import { StyleSheet } from "react-native"
 export const gstyles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 24,
-        backgroundColor: "#f9f9f9"
+        padding: 24
     },
     container_center : {
         alignItems: "center",
@@ -13,7 +12,7 @@ export const gstyles = StyleSheet.create({
 
     container_forms: {
         width: "100%",
-        maxWidth: 500,
+        maxWidth: 520,
         marginTop: 20,
         alignContent: "center"
     },
