@@ -28,7 +28,7 @@ const Dropdown = (props: Props) => {
                     </>
                 )
             }
-            <View style={{ minWidth: 100 }}>
+            <View style={{ minWidth: 80 }}>
                 <TouchableOpacity
                     onPress={props.onPress}
                 >
@@ -37,13 +37,15 @@ const Dropdown = (props: Props) => {
                         backgroundColor: "#D9D9D9",
                         borderRadius: 5,
                         paddingVertical: 14,
-                        paddingHorizontal: 18,
+                        paddingLeft : 18,
+                        paddingRight : 10,
                         flexDirection: "row",
                         gap: 5,
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        justifyContent : "center"
                     }}>
-                        <Text style={{ ...gstyles.t_semibold, minWidth: 50 }}>{props.selected?.title || ""}</Text>
-                        <Ionicons name='arrow-drop-down' size={35} />
+                        <Text style={{ ...gstyles.t_semibold, minWidth: 20 }}>{props.selected?.title || ""}</Text>
+                        <Ionicons name='arrow-drop-down' size={28} />
                     </View>
                 </TouchableOpacity>
                 {
@@ -57,10 +59,13 @@ const Dropdown = (props: Props) => {
                     }}>
                         <View style={{
                             minHeight: 50,
+                            maxHeight : 200,
                             backgroundColor: "#D9D9D9",
                             borderRadius: 5,
                             paddingVertical: 14,
-                            paddingHorizontal: 18,
+                            paddingLeft : 12,
+                            paddingRight: 5,
+                            gap : 20
                         }}>
                             <FlatList
                                 data={props?.items}
@@ -72,7 +77,7 @@ const Dropdown = (props: Props) => {
                                             paddingVertical: 6,
                                             paddingHorizontal: 6
                                         }}>
-                                        <Text style={gstyles.t_semibold}>{item?.title || " "}</Text>
+                                        <Text style={{...gstyles.t_semibold, minWidth: 50}}>{item?.title || " "}</Text>
                                     </TouchableOpacity>
                                 )}
                                 keyExtractor={item => item?.id.toString()}

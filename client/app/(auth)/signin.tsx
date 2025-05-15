@@ -1,4 +1,4 @@
-import { Text, View, Image, TextInput, ScrollView, SafeAreaView, TouchableOpacity, Platform } from 'react-native'
+import { Text, View, Image, TextInput, ScrollView, SafeAreaView, TouchableOpacity, Platform, Alert } from 'react-native'
 import React, { useState } from 'react'
 import Logo from "../../assets/images/banner_logo.png";
 import Spacer from '@/components/Spacer';
@@ -13,12 +13,17 @@ import DateDropPicker from '@/components/DateDropPicker';
 
 
 const root = () => {
-
   const [isFocus_sex, setFocus_sex] = useState(false);
   const [selected_sex, setSelected_sex] = useState<IFilterData>(Filters_Sex[0]);
 
   const [chkbox_tos, setChkbox_tos] = useState(false);
   const [chkbox_privacy, setChkbox_privacy] = useState(false);
+
+  const date = new Date();
+
+  const [bdate_day, setBdateDay] = useState<number>(date.getUTCDate() + 1);
+  const [bdate_month, setBdateMonth] = useState<number>(date.getUTCMonth() + 1);
+  const [bdate_year, setBdateYear] = useState<number>(date.getUTCFullYear());
 
   return (
     <SafeAreaProvider style={{ backgroundColor: "#f9f9f9" }}>
@@ -52,23 +57,47 @@ const root = () => {
               <Spacer size={8} />
               <Text style={gstyles.t_semibold}>Birthday</Text>
               <Spacer size={2} />
-              <DateDropPicker />
-              <Spacer size={8} />
-              <Dropdown
-                style={{
-                  zIndex: 9999,
-                  position: "relative",
-                  alignSelf: "flex-start"
-                }}
-                label='Sex'
-                selected={selected_sex}
-                isFocus={isFocus_sex}
-                items={Filters_Sex}
-                onPress={() => setFocus_sex(!isFocus_sex)}
-                onSelect={(item) => {
-                  setSelected_sex(item);
-                  setFocus_sex(!isFocus_sex)
-                }} />
+              <View style={{
+                width: "100%",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                gap : 20,
+                zIndex : 10,
+                alignItems: "flex-start"
+              }}>
+                <DateDropPicker
+                  day={bdate_day}
+                  month={bdate_month}
+                  year={bdate_year}
+                  onSelectDay={(day) => {
+                    console.log(`Day Selected : ${day}`)
+                    setBdateDay(day)
+                  }}
+                  onSelectMonth={(month) => {
+                    console.log(`Month Selected : ${month}`)
+                    setBdateMonth(month);
+                  }}
+                  onSelectYear={(year) => {
+                    console.log(`Year Selected : ${year}`)
+                    setBdateYear(year)
+                  }}
+                />
+                <Dropdown
+                  style={{
+                    zIndex: 10,
+                    position: "relative",
+                    alignSelf: "flex-start"
+                  }}
+                  label='Sex'
+                  selected={selected_sex}
+                  isFocus={isFocus_sex}
+                  items={Filters_Sex}
+                  onPress={() => setFocus_sex(!isFocus_sex)}
+                  onSelect={(item) => {
+                    setSelected_sex(item);
+                    setFocus_sex(!isFocus_sex)
+                  }} />
+              </View>
               <Spacer size={8} />
               <View style={{ width: "100%" }}>
                 <Text style={gstyles.t_semibold}>Email</Text>

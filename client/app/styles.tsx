@@ -20,14 +20,14 @@ export const gstyles = StyleSheet.create({
         flex : 1,
         backgroundColor: "#D9D9D9",
         borderRadius: 5,
-        paddingVertical : 14,
+        paddingVertical : 12,
         paddingHorizontal : 18
     },
     sm_input: {
         minWidth : 50,
         backgroundColor: "#D9D9D9",
         borderRadius: 5,
-        paddingVertical : 14,
+        paddingVertical : 12,
         paddingHorizontal : 18
     },
     btn_primary: {
@@ -47,7 +47,7 @@ export const gstyles = StyleSheet.create({
         fontFamily: "poppins-bold"
     },
     t_base: {
-        fontSize: 14,
+        fontSize: 12,
         color: "#565353",
          fontFamily: "poppins"
     },
@@ -57,27 +57,27 @@ export const gstyles = StyleSheet.create({
          fontFamily: "poppins"
     },
     t_base_dark: {
-        fontSize: 14,
+        fontSize: 12,
         color: "#000000",
         fontFamily: "poppins"
     },
     t_semibold: {
-        fontSize: 14,
+        fontSize: 12,
         color: "#565353",
         fontFamily: "poppins-semibold"
     },
     t_semibold_dark: {
-        fontSize: 14,
+        fontSize: 12,
         color: "#000000",
         fontFamily: "poppins-semibold"
     },
     t_bold: {
-        fontSize: 14,
+        fontSize: 12,
         color: "#565353",
         fontFamily: "poppins-bold"
     },
     t_bold_dark: {
-        fontSize: 14,
+        fontSize: 12,
         color: "#000000",
         fontFamily: "poppins-bold"
     }
