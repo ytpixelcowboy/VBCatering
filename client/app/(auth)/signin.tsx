@@ -29,8 +29,11 @@ const root = () => {
     <SafeAreaProvider style={{ backgroundColor: "#f9f9f9" }}>
       <SafeAreaView style={{ flex: 1 }} collapsable={true}>
         <ScrollView style={{
+          flex : 1,
           width: "100%",
-        }}>
+        }}
+        nestedScrollEnabled={true} 
+        >
           <View style={{ ...gstyles.container, ...gstyles.container_center }}>
             <Image
               style={{
