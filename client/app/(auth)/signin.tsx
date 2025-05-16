@@ -72,6 +72,7 @@ const root = () => {
                   day={bdate_day}
                   month={bdate_month}
                   year={bdate_year}
+                  fromYear={1980}
                   onSelectDay={(day) => {
                     console.log(`Day Selected : ${day}`)
                     setBdateDay(day)

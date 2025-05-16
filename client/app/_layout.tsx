@@ -16,7 +16,7 @@ export default function RootLayout() {
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
-      router.replace("/(auth)/login");
+      //router.replace("/(auth)/login");
     }
   }, [loaded]);
 
@@ -24,6 +24,7 @@ export default function RootLayout() {
     <Stack>
       <StatusBar barStyle={"dark-content"} />
       <Stack.Screen name='(auth)' options={{ headerShown: false }} />
+      <Stack.Screen name='reservation' options={{ headerShown: false }} />
     </Stack>
   );
 }

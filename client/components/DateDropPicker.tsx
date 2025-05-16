@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 import Dropdown from './Dropdown'
 import { IFilterData } from '@/lib/types'
 
-const isLeapYear = (new Date().getFullYear() / 4) == 0;
-
 type Props = {
     day: number,
     month: number,
@@ -15,9 +13,9 @@ type Props = {
     toYear?: number,
     fromDay?: number,
     toDay?: number,
-    onSelectDay : (day : number) => void,
-    onSelectMonth : (month : number) => void,
-    onSelectYear : (year : number) => void,
+    onSelectDay: (day: number) => void,
+    onSelectMonth: (month: number) => void,
+    onSelectYear: (year: number) => void,
     getTimeInMilis?: (milliseconds: number) => void;
 }
 
@@ -44,10 +42,13 @@ const DateDropPicker = (props: Props) => {
     const [isFocus_month, setFocusMonth] = useState(false);
     const [isFocus_year, setFocusYear] = useState(false);
 
-    const getDays = (month: number) => {
+    const getDays = (month: number, year: number) => {
         const hallow = [3, 5, 8, 10]; //Contains 30 days 
+
         let max = 0;
-        if (month == 2) {
+        if (month == 1) {
+            const isLeapYear = (year % 4) == 0;
+            //console.log(year);
             max = isLeapYear ? 29 : 28;
         } else if (hallow.findIndex((e) => e == (month - 1))) {
             max = 30;
@@ -56,10 +57,11 @@ const DateDropPicker = (props: Props) => {
         }
 
         //Only cap values at the max
-
         if (toDay) {
             max = toDay
         }
+
+        //console.log(max);
 
 
         let bin = [] as number[];
@@ -90,7 +92,7 @@ const DateDropPicker = (props: Props) => {
     const getDaysAsFilterData = () => {
         let bin = [] as IFilterData[];
 
-        getDays(nowMonth).items.forEach((e) => {
+        getDays(props.month - 1, props.year).items.forEach((e) => {
             bin.push({
                 id: e - 1,
                 title: e.toString()
@@ -126,16 +128,16 @@ const DateDropPicker = (props: Props) => {
         return bin;
     }
 
-    const parseDay = (day : number) => {
-        return getDaysAsFilterData().find((e)=> e.id == day - 1) as IFilterData
+    const parseDay = (day: number) => {
+        return getDaysAsFilterData().find((e) => e.id == day - 1) as IFilterData
     }
 
-    const parseMonth = (month : number) => {
-        return getMonthsAsFilterData().find((e)=> e.id == month - 1) as IFilterData
+    const parseMonth = (month: number) => {
+        return getMonthsAsFilterData().find((e) => e.id == month - 1) as IFilterData
     }
 
-    const parseYear = (year : number) => {
-        return getYearsAsFilterData().find((e)=> e.id == year) as IFilterData
+    const parseYear = (year: number) => {
+        return getYearsAsFilterData().find((e) => e.id == year) as IFilterData
     }
 
     const [selectedDay, setSelectedDay] = useState<IFilterData>(parseDay(props.day));
@@ -152,6 +154,7 @@ const DateDropPicker = (props: Props) => {
         if (!selectedMonth) setSelectedMonth(parseMonth(props.month))
         if (!selectedYear) setSelectedYear(parseYear(props.year))
 
+        //console.log(selectedMonth.id);
 
     }, [selectedDay, selectedMonth, selectedYear])
 
@@ -161,46 +164,62 @@ const DateDropPicker = (props: Props) => {
                 flexWrap: "wrap",
                 flexDirection: "row",
                 gap: 5,
-                zIndex : 9999,
+                zIndex: 9999,
             }}>
             <Dropdown
-                style={{ alignItems: "flex-start", zIndex : 10, }}
+                style={{ alignItems: "flex-start", zIndex: 10, }}
                 label='Day'
                 selected={selectedDay}
                 items={days}
+                allowType={true}
                 isFocus={isFocus_day}
                 onPress={function (): void {
                     setFocusDay((prev) => !prev)
-                }} onSelect={(item: IFilterData)=>{
+                }} onSelect={(item: IFilterData) => {
                     setFocusDay((prev) => !prev)
                     setSelectedDay(item);
                     props.onSelectDay(item.id as number)
+                }}
+                onValueChange={(value) => {
+                    if (value)
+                        setSelectedMonth(parseMonth(Number(value)))
                 }} />
             <Dropdown
-                style={{ alignItems: "flex-start", zIndex : 10, }}
+                style={{ alignItems: "flex-start", zIndex: 10, }}
                 label='Month'
                 selected={selectedMonth}
+                allowType={true}
                 isFocus={isFocus_month}
                 items={months}
                 onPress={function (): void {
                     setFocusMonth((prev) => !prev)
-                }} onSelect={(item: IFilterData)=>{
+                }} onSelect={(item: IFilterData) => {
                     setFocusMonth((prev) => !prev)
                     setSelectedMonth(item);
                     props.onSelectMonth((item.id as number) + 1)
-                }} />
+                }}
+                onValueChange={(value) => {
+                    if (value)
+                        setSelectedMonth(parseMonth(Number(value)))
+                }}
+            />
             <Dropdown
-                style={{ alignItems: "flex-start", zIndex : 10, }}
+                style={{ alignItems: "flex-start", zIndex: 10, }}
                 label='Year'
                 selected={selectedYear}
+                allowType={true}
                 isFocus={isFocus_year}
                 items={years}
                 onPress={function (): void {
                     setFocusYear((prev) => !prev)
-                }} onSelect={(item: IFilterData)=>{
+                }} onSelect={(item: IFilterData) => {
                     setFocusYear((prev) => !prev)
                     setSelectedYear(item);
                     props.onSelectYear(item.id as number)
+                }}
+                onValueChange={(value) => {
+                    if (value)
+                        setSelectedMonth(parseMonth(Number(value)))
                 }} />
         </View>
     )

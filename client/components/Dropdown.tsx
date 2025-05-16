@@ -1,5 +1,5 @@
-import { FlatList, ScrollView, StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native'
-import React from 'react'
+import { FlatList, ScrollView, StyleProp, StyleSheet, Text, TextInput, TouchableOpacity, View, ViewStyle } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { gstyles } from '@/app/styles'
 import Spacer from './Spacer'
 import Ionicons from "@expo/vector-icons/MaterialIcons";
@@ -11,12 +11,16 @@ type Props = {
     label?: string,
     isFocus?: boolean,
     selected?: IFilterData,
+    allowType?: boolean,
     onPress: () => void,
     onSelect: (item: IFilterData) => void,
+    onValueChange? : (value : string | undefined)=> void,
     items?: IFilterData[]
 }
 
 const Dropdown = (props: Props) => {
+    const [value , setValue] = useState("");
+
     return (
         <View style={props.style}>
             {
@@ -44,15 +48,36 @@ const Dropdown = (props: Props) => {
                         alignItems: 'center',
                         justifyContent: "center"
                     }}>
-                        <Text style={{ ...gstyles.t_semibold, minWidth: 20 }}>{props.selected?.title || ""}</Text>
+                        {
+                            props.allowType ?
+                                <TextInput
+                                    style={{
+                                        alignSelf: "flex-start",
+                                        minWidth: 30,
+                                        maxWidth : 1
+                                    }}
+                                    onChange={({nativeEvent: {text}})=>{
+                                        if(props.allowType && props.onValueChange){
+                                            props.onValueChange(value);
+                                            console.log(text);
+                                        }
+                                    }}
+                                    value={props.selected?.title}
+                                    defaultValue={props.selected?.title}
+
+                                />
+                                :
+                                <Text style={{ ...gstyles.t_semibold, minWidth: 20 }}>{props.selected?.title || ""}</Text>
+                        }
+
                         <Ionicons name='arrow-drop-down' size={28} />
                     </View>
                 </TouchableOpacity>
                 {
                     props.isFocus &&
-                    <View style={{ 
-                                width: "100%",
-                                position: 'absolute',
+                    <View style={{
+                        width: "100%",
+                        position: 'absolute',
                         top: 55,
                         left: 0,
                         right: 0,
@@ -65,7 +90,7 @@ const Dropdown = (props: Props) => {
                         paddingLeft: 12,
                         paddingRight: 5,
                         gap: 20
-                             }}>
+                    }}>
                         <ScrollView
                             keyboardShouldPersistTaps="handled"  // <-- Avoid scroll blocking from keyboard focus
                             showsVerticalScrollIndicator={true} // <-- Ensure scrollbar shows
