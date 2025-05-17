@@ -9,7 +9,8 @@ import { router } from 'expo-router';
 import Dropdown from '@/components/Dropdown';
 import { IFilterData } from '@/lib/types';
 import { Filters_Sex } from '@/lib/const';
-import DateDropPicker from '@/components/DateDropPicker';
+import CalendarModal from '@/components/CalendarModal';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 
 const root = () => {
@@ -25,14 +26,38 @@ const root = () => {
   const [bdate_month, setBdateMonth] = useState<number>(date.getUTCMonth() + 1);
   const [bdate_year, setBdateYear] = useState<number>(date.getUTCFullYear());
 
+  const [showModalCalender, setShowModalCalendar] = useState(false);
+
   return (
     <SafeAreaProvider style={{ backgroundColor: "#f9f9f9" }}>
+
       <SafeAreaView style={{ flex: 1 }} collapsable={true}>
+        {
+          showModalCalender
+          &&
+          <CalendarModal
+            label='Select your birthdate'
+            showEvents={false}
+            day={bdate_day}
+            month={bdate_month}
+            year={bdate_year}
+            onClose={() => {
+              setShowModalCalendar((prev) => !prev)
+            }}
+            onDaySelect={(day, month, year) => {
+              setBdateDay(day);
+              setBdateMonth(month)
+              setBdateYear(year)
+              setShowModalCalendar((prev) => !prev)
+            }}
+          />
+        }
+
         <ScrollView style={{
-          flex : 1,
+          flex: 1,
           width: "100%",
         }}
-        nestedScrollEnabled={true} 
+          nestedScrollEnabled={true}
         >
           <View style={{ ...gstyles.container, ...gstyles.container_center }}>
             <Image
@@ -58,34 +83,38 @@ const root = () => {
                 <TextInput style={{ ...gstyles.input }} />
               </View>
               <Spacer size={8} />
-              <Text style={gstyles.t_semibold}>Birthday</Text>
-              <Spacer size={2} />
               <View style={{
                 width: "100%",
                 flexDirection: "row",
                 flexWrap: "wrap",
-                gap : 20,
-                zIndex : 10,
-                alignItems: "flex-start"
+                gap: 10,
+                zIndex: 10,
+                alignItems: "center"
               }}>
-                <DateDropPicker
-                  day={bdate_day}
-                  month={bdate_month}
-                  year={bdate_year}
-                  fromYear={1980}
-                  onSelectDay={(day) => {
-                    console.log(`Day Selected : ${day}`)
-                    setBdateDay(day)
-                  }}
-                  onSelectMonth={(month) => {
-                    console.log(`Month Selected : ${month}`)
-                    setBdateMonth(month);
-                  }}
-                  onSelectYear={(year) => {
-                    console.log(`Year Selected : ${year}`)
-                    setBdateYear(year)
-                  }}
-                />
+                <View>
+                  <Text style={gstyles.t_semibold}>Birthday</Text>
+                  <Spacer size={2} />
+                  <TouchableOpacity style={{
+                  height: 50,
+                  minWidth: 150,
+                  alignItems: "center",
+                  backgroundColor: "#D9D9D9",
+                  borderRadius: 5,
+                  paddingVertical: 12,
+                  paddingHorizontal: 16,
+                  gap : 10,
+                  justifyContent : "flex-start",
+                  alignContent: "flex-start",
+                  flexDirection : "row"
+                }}
+                onPress={()=>{
+                  setShowModalCalendar((prev)=> !prev)
+                }}
+                >
+                  <MaterialIcons name='calendar-month' size={25} />
+                  <Text style={gstyles.t_semibold_dark}>{`${bdate_month} / ${bdate_day} / ${bdate_year}`}</Text>
+                </TouchableOpacity>
+                </View>
                 <Dropdown
                   style={{
                     zIndex: 10,

@@ -19,12 +19,8 @@ type Props = {
     getTimeInMilis?: (milliseconds: number) => void;
 }
 
-const DateDropPicker = (props: Props) => {
+const DatePicker = (props: Props) => {
     const date = new Date();
-
-    const nowDay = date.getDate();
-    const nowMonth = date.getMonth();
-    const nowYear = date.getFullYear();
 
     const [days, setDays] = useState<IFilterData[]>();
     const [months, setMonths] = useState<IFilterData[]>([]);
@@ -60,9 +56,6 @@ const DateDropPicker = (props: Props) => {
         if (toDay) {
             max = toDay
         }
-
-        //console.log(max);
-
 
         let bin = [] as number[];
         for (let i = fromDay; i <= max; i++) {
@@ -131,11 +124,9 @@ const DateDropPicker = (props: Props) => {
     const parseDay = (day: number) => {
         return getDaysAsFilterData().find((e) => e.id == day - 1) as IFilterData
     }
-
     const parseMonth = (month: number) => {
         return getMonthsAsFilterData().find((e) => e.id == month - 1) as IFilterData
     }
-
     const parseYear = (year: number) => {
         return getYearsAsFilterData().find((e) => e.id == year) as IFilterData
     }
@@ -153,8 +144,6 @@ const DateDropPicker = (props: Props) => {
         if (!selectedDay) setSelectedDay(parseDay(props.day))
         if (!selectedMonth) setSelectedMonth(parseMonth(props.month))
         if (!selectedYear) setSelectedYear(parseYear(props.year))
-
-        //console.log(selectedMonth.id);
 
     }, [selectedDay, selectedMonth, selectedYear])
 
@@ -181,8 +170,19 @@ const DateDropPicker = (props: Props) => {
                     props.onSelectDay(item.id as number)
                 }}
                 onValueChange={(value) => {
+                    //If user type date lower than min, set min
+                    if(Number(value) < Number(props.fromDay)){
+                        setSelectedDay(parseDay(1))
+                        return;
+                    }
+                    //If user type date higher than max, set max
+                    if(Number(value) > Number(props.toDay)){
+                        setSelectedDay(parseMonth(1))
+                        return;
+                    }
+
                     if (value)
-                        setSelectedMonth(parseMonth(Number(value)))
+                        setSelectedDay(parseDay(Number(value)))
                 }} />
             <Dropdown
                 style={{ alignItems: "flex-start", zIndex: 10, }}
@@ -199,6 +199,16 @@ const DateDropPicker = (props: Props) => {
                     props.onSelectMonth((item.id as number) + 1)
                 }}
                 onValueChange={(value) => {
+                    if(Number(value) < Number(props.fromDay)){
+                        setSelectedMonth(parseMonth(1))
+                        return;
+                    }
+                    //If user type date higher than max, set max
+                    if(Number(value) > Number(props.toMonth)){
+                        setSelectedMonth(parseMonth(1))
+                        return;
+                    }
+
                     if (value)
                         setSelectedMonth(parseMonth(Number(value)))
                 }}
@@ -218,13 +228,23 @@ const DateDropPicker = (props: Props) => {
                     props.onSelectYear(item.id as number)
                 }}
                 onValueChange={(value) => {
+                    if(Number(value) < Number(props.fromYear)){
+                        setSelectedYear(parseYear(1))
+                        return;
+                    }
+                    //If user type date higher than max, set max
+                    if(Number(value) > Number(props.toYear)){
+                        setSelectedYear(parseYear(1))
+                        return;
+                    }
+
                     if (value)
-                        setSelectedMonth(parseMonth(Number(value)))
+                        setSelectedYear(parseYear(Number(value)))
                 }} />
         </View>
     )
 }
 
-export default DateDropPicker
+export default DatePicker
 
 const styles = StyleSheet.create({})

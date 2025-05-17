@@ -14,12 +14,12 @@ type Props = {
     allowType?: boolean,
     onPress: () => void,
     onSelect: (item: IFilterData) => void,
-    onValueChange? : (value : string | undefined)=> void,
+    onValueChange?: (value: string | undefined) => void,
     items?: IFilterData[]
 }
 
 const Dropdown = (props: Props) => {
-    const [value , setValue] = useState("");
+    const [value, setValue] = useState(props.selected?.title || "");
 
     return (
         <View style={props.style}>
@@ -32,7 +32,7 @@ const Dropdown = (props: Props) => {
                     </>
                 )
             }
-            <View style={{ minWidth: 80 }}>
+            <View style={{ minWidth: 50, }}>
                 <TouchableOpacity
                     onPress={props.onPress}
                 >
@@ -46,30 +46,26 @@ const Dropdown = (props: Props) => {
                         flexDirection: "row",
                         gap: 5,
                         alignItems: 'center',
-                        justifyContent: "center"
+                        justifyContent: "center",
                     }}>
                         {
-                            props.allowType ?
+                            props.allowType ? (
                                 <TextInput
                                     style={{
+                                        minWidth : 30,
+                                        maxWidth : 1,
                                         alignSelf: "flex-start",
-                                        minWidth: 30,
-                                        maxWidth : 1
                                     }}
-                                    onChange={({nativeEvent: {text}})=>{
-                                        if(props.allowType && props.onValueChange){
-                                            props.onValueChange(value);
-                                            console.log(text);
-                                        }
+                                    onChangeText={(text) => {
+                                        setValue(text);
+                                        props.onValueChange?.(text);
                                     }}
-                                    value={props.selected?.title}
-                                    defaultValue={props.selected?.title}
-
+                                    value={value}
                                 />
-                                :
+                            ) : (
                                 <Text style={{ ...gstyles.t_semibold, minWidth: 20 }}>{props.selected?.title || ""}</Text>
+                            )
                         }
-
                         <Ionicons name='arrow-drop-down' size={28} />
                     </View>
                 </TouchableOpacity>
@@ -89,12 +85,15 @@ const Dropdown = (props: Props) => {
                         paddingVertical: 14,
                         paddingLeft: 12,
                         paddingRight: 5,
-                        gap: 20
+                        gap: 20,
+                        shadowColor : "#00000045",
+                        shadowRadius: 2,
+                        shadowOffset: {width: 2,height: 2}
                     }}>
                         <ScrollView
-                            keyboardShouldPersistTaps="handled"  // <-- Avoid scroll blocking from keyboard focus
-                            showsVerticalScrollIndicator={true} // <-- Ensure scrollbar shows
-                            contentContainerStyle={{ paddingBottom: 8 }} // Optional: spacing at bottom
+                            keyboardShouldPersistTaps="handled"
+                            showsVerticalScrollIndicator={true}
+                            contentContainerStyle={{ paddingBottom: 8 }}
                         >
                             {
                                 props?.items?.map((e, idx) => (
@@ -104,7 +103,7 @@ const Dropdown = (props: Props) => {
                                         activeOpacity={1}
                                         style={{
                                             paddingVertical: 6,
-                                            paddingHorizontal: 6
+                                            paddingHorizontal: 6,
                                         }}>
                                         <Text style={{ ...gstyles.t_semibold, minWidth: 50 }}>{e.title || " "}</Text>
                                     </TouchableOpacity>
@@ -115,9 +114,9 @@ const Dropdown = (props: Props) => {
                 }
             </View>
         </View>
-
     )
 }
+
 
 export default Dropdown
 
