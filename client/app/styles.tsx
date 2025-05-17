@@ -5,7 +5,7 @@ export const gstyles = StyleSheet.create({
         flex: 1,
         padding: 24
     },
-    container_center : {
+    container_center: {
         alignItems: "center",
         justifyContent: "center",
     },
@@ -17,21 +17,21 @@ export const gstyles = StyleSheet.create({
         alignContent: "center"
     },
     input: {
-        flex : 1,
+        flex: 1,
         backgroundColor: "#D9D9D9",
         borderRadius: 5,
-        paddingVertical : 12,
-        paddingHorizontal : 18
+        paddingVertical: 12,
+        paddingHorizontal: 18
     },
     sm_input: {
-        minWidth : 50,
+        minWidth: 50,
         backgroundColor: "#D9D9D9",
         borderRadius: 5,
-        paddingVertical : 12,
-        paddingHorizontal : 18
+        paddingVertical: 12,
+        paddingHorizontal: 18
     },
     btn_primary: {
-        minWidth : 200,
+        minWidth: 200,
         alignSelf: "center",
         height: 50,
         backgroundColor: "#C5D0A4",
@@ -41,6 +41,16 @@ export const gstyles = StyleSheet.create({
         justifyContent: "center",
         paddingHorizontal: 20,
     },
+    dropshadow_sm: {
+        shadowColor: "#00000045",
+        shadowRadius: 2,
+        shadowOffset: { width: 2, height: 2 }
+    },
+    dropshadow_md: {
+        shadowColor: "#00000045",
+        shadowRadius: 4,
+        shadowOffset: { width: 2, height: 2 }
+    },
     t_header: {
         fontSize: 20,
         color: "#565353",
@@ -49,12 +59,12 @@ export const gstyles = StyleSheet.create({
     t_base: {
         fontSize: 12,
         color: "#565353",
-         fontFamily: "poppins"
+        fontFamily: "poppins"
     },
     t_subtitle: {
         fontSize: 12,
         color: "#565353",
-         fontFamily: "poppins"
+        fontFamily: "poppins"
     },
     t_base_dark: {
         fontSize: 12,

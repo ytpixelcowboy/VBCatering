@@ -18,3 +18,7 @@ export const Filters_Sex = [
     title: "Others",
   },
 ] as IFilterData[];
+
+export const Locale_US_EN_MONTHS_SHORT = [
+  "Jan","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"
+]

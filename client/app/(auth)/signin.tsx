@@ -30,12 +30,12 @@ const root = () => {
 
   return (
     <SafeAreaProvider style={{ backgroundColor: "#f9f9f9" }}>
-
       <SafeAreaView style={{ flex: 1 }} collapsable={true}>
         {
           showModalCalender
           &&
           <CalendarModal
+            fromYear={1900}
             label='Select your birthdate'
             showEvents={false}
             day={bdate_day}
@@ -54,8 +54,8 @@ const root = () => {
         }
 
         <ScrollView style={{
-          flex: 1,
           width: "100%",
+          position: "relative"
         }}
           nestedScrollEnabled={true}
         >

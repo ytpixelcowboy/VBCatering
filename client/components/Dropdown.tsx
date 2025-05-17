@@ -85,10 +85,7 @@ const Dropdown = (props: Props) => {
                         paddingVertical: 14,
                         paddingLeft: 12,
                         paddingRight: 5,
-                        gap: 20,
-                        shadowColor : "#00000045",
-                        shadowRadius: 2,
-                        shadowOffset: {width: 2,height: 2}
+                        gap: 20,...gstyles.dropshadow_md
                     }}>
                         <ScrollView
                             keyboardShouldPersistTaps="handled"
@@ -100,7 +97,6 @@ const Dropdown = (props: Props) => {
                                     <TouchableOpacity
                                         key={idx}
                                         onPress={() => props.onSelect(e)}
-                                        activeOpacity={1}
                                         style={{
                                             paddingVertical: 6,
                                             paddingHorizontal: 6,

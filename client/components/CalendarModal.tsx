@@ -1,10 +1,11 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Calendar, CalendarList, Agenda, DateData } from 'react-native-calendars';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { gstyles } from '@/app/styles';
 import { IFilterData } from '@/lib/types';
 import Dropdown from './Dropdown';
+import { Locale_US_EN_MONTHS_SHORT } from '@/lib/const';
 
 type Props = {
   label: string,
@@ -36,6 +37,9 @@ export default function CalendarModal(props: Props) {
   const [isFocus_month, setFocusMonth] = useState(false);
   const [isFocus_year, setFocusYear] = useState(false);
 
+  const [showMonthsSelector, setShowMonthSelector] = useState(false);
+  const [showYearSelector, setShowYearSelector] = useState(false);
+
   const getMonths = () => {
     let bin = [] as number[];
     for (let i = fromMonth; i <= toMonth; i++) {
@@ -57,10 +61,10 @@ export default function CalendarModal(props: Props) {
   const getMonthsAsFilterData = () => {
     let bin = [] as IFilterData[];
 
-    getMonths().items.forEach((e) => {
+    getMonths().items.forEach((e, idx) => {
       bin.push({
         id: e - 1,
-        title: e.toString()
+        title: Locale_US_EN_MONTHS_SHORT[idx]
       })
     })
 
@@ -88,7 +92,7 @@ export default function CalendarModal(props: Props) {
   }
 
   const [selectedMonth, setSelectedMonth] = useState<IFilterData>(parseMonth(props.month) || date.getUTCMonth());
-  const [selectedYear, setSelectedYear] = useState<IFilterData>(parseYear(props.year)|| date.getUTCFullYear());
+  const [selectedYear, setSelectedYear] = useState<IFilterData>(parseYear(props.year) || date.getUTCFullYear());
 
   useEffect(() => {
 
@@ -108,110 +112,205 @@ export default function CalendarModal(props: Props) {
       backgroundColor: "#00000073",
       zIndex: 9999,
       alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
+      padding: 24,
     }}>
       <View style={{
         minWidth: 350,
         maxWidth: 800,
-        minHeight: 400,
         padding: 18,
         backgroundColor: "#FFFFFF",
         borderRadius: 12
       }}>
-        <View style={{
-          alignSelf: "flex-start",
-          height: 50,
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 5
-        }}>
-          <TouchableOpacity style={{
-            padding: 5
-          }}
-            activeOpacity={1}
-            onPress={() => {
-              props.onClose()
-            }}
-          >
-            <MaterialIcons name='arrow-back' size={28} />
-          </TouchableOpacity>
-          <Text style={{ ...gstyles.t_semibold_dark, fontSize: 14 }}>{props.label}</Text>
-        </View>
-        <View style={{
-          alignSelf: "flex-start",
-          height: 50,
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 5,
-          zIndex: 10,
-        }}>
-          <Dropdown
-            style={{ alignItems: "flex-start", zIndex: 10, }}
-            selected={selectedMonth}
-            allowType={true}
-            isFocus={isFocus_month}
-            items={months}
-            onPress={()=>{
-              setFocusMonth((prev) => !prev)
-            }} onSelect={(item: IFilterData) => {
-              setSelectedMonth(item);
-              setFocusMonth((prev) => !prev)
-            }}
-            onValueChange={(value) => {
-              if (Number(value) < Number(props.fromDay)) {
-                setSelectedMonth(parseMonth(1))
-                return;
-              }
-              //If user type date higher than max, set max
-              if (Number(value) > Number(props.toMonth)) {
-                setSelectedMonth(parseMonth(1))
-                return;
-              }
 
-              if (value)
-                setSelectedMonth(parseMonth(Number(value)))
-            }}
-          />
-          <Dropdown
-            style={{ alignItems: "flex-start", zIndex: 10, }}
-            selected={selectedYear}
-            allowType={true}
-            isFocus={isFocus_year}
-            items={years}
-            onPress={()=>{
-              setFocusYear((prev) => !prev)
-            }} onSelect={(item: IFilterData) => {
-              setSelectedYear(item);
-              setFocusYear((prev) => !prev)
-            }}
-            onValueChange={(value) => {
-              if (Number(value) < Number(props.fromYear)) {
-                setSelectedYear(parseYear(1))
-                return;
-              }
-              //If user type date higher than max, set max
-              if (Number(value) > Number(props.toYear)) {
-                setSelectedYear(parseYear(1))
-                return;
-              }
+        <View style={{
+          width: "100%",
+        }}>
+          {
+            showMonthsSelector
+            &&
+            <GridSelectView
+              title='Select month'
+              items={getMonthsAsFilterData()}
+              onSelectItem={(item) => {
+                setSelectedMonth(item)
+                setShowMonthSelector((prev) => !prev)
+              }}
+              onClose={() => {
+                setShowMonthSelector((prev) => !prev)
+              }}
+            />
+            ||
+            showYearSelector
+            &&
+            <GridSelectView
+              title='Select year'
+              items={getYearsAsFilterData()}
+              onSelectItem={(item) => {
+                setSelectedYear(item)
+                setShowYearSelector((prev) => !prev)
+              }}
+              onClose={() => {
+                setShowYearSelector((prev) => !prev)
+              }}
+            />
+            ||
+            <View style={{
+              ...styles.container_selector
+            }}>
+              <View style={{
+                alignSelf: "flex-start",
+                height: 50,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 5
+              }}>
+                <TouchableOpacity style={{
+                  padding: 5
+                }}
+                  onPress={() => {
+                    props.onClose()
+                  }}
+                >
+                  <MaterialIcons name='arrow-back' size={28} />
+                </TouchableOpacity>
+                <Text style={{ ...gstyles.t_semibold_dark, fontSize: 14 }}>{props.label}</Text>
+              </View>
+              <Calendar
+                hideArrows={true}
+                initialDate={`${selectedYear.id}-${Number(selectedMonth.id) + 1}-${props.day}`}
+                onDayPress={(date: DateData) => {
+                  props.onDaySelect(date.day, date.month, date.year)
+                }}
+                enableSwipeMonths={true}
+                onMonthChange={(date : DateData)=>{
+                  setSelectedMonth(parseMonth(date.month))
+                }}
+                renderHeader={() => (
+                  <View style={{
+                    alignSelf: "flex-start",
+                    height: 50,
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 10,
+                    zIndex: 10,
+                  }}>
+                    <TouchableOpacity style={{
+                      paddingHorizontal: 18,
+                      paddingVertical: 10,
+                      borderRadius: 24,
+                      backgroundColor: "#0000001C"
+                    }}
+                      onPress={() => {
+                        setShowMonthSelector((prev) => !prev)
+                      }}
+                    >
+                      <Text style={{ ...gstyles.t_semibold_dark, fontSize: 14 }}>{selectedMonth.title}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{
+                      paddingHorizontal: 18,
+                      paddingVertical: 10,
+                      borderRadius: 24,
+                      backgroundColor: "#0000001C"
+                    }}
+                      onPress={() => {
+                        setShowYearSelector((prev) => !prev)
+                      }}
+                    >
+                      <Text style={{ ...gstyles.t_semibold_dark, fontSize: 14 }}>{selectedYear.title}</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              />
+            </View>
+          }
 
-              if (value)
-                setSelectedYear(parseYear(Number(value)))
-            }} />
         </View>
-        <Calendar
-          hideArrows={true}
-          initialDate={`${selectedYear.id}-${Number(selectedMonth.id) + 1}-${props.day}`}
-          onDayPress={(date: DateData) => {
-            props.onDaySelect(date.day, date.month, date.year)
-          }}
-          renderHeader={() => null}
-        />
+        {
+          props.showEvents
+          &&
+          <View>
+
+          </View>
+        }
       </View>
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const GridSelectView = (props: {
+  title: string,
+  items: IFilterData[],
+  onSelectItem: (item: IFilterData) => void,
+  onClose: () => void,
+}) => {
+  return (
+    <View style={{
+      ...styles.container_selector,
+      maxHeight: 500
+    }}>
+      <View style={{
+        alignSelf: "flex-start",
+        height: 50,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 5
+      }}>
+        <TouchableOpacity style={{
+          padding: 5
+        }}
+          onPress={props.onClose}
+        >
+          <MaterialIcons name='arrow-back' size={28} />
+        </TouchableOpacity>
+        <Text style={{ ...gstyles.t_semibold_dark, fontSize: 14 }}>{props.title}</Text>
+      </View>
+      <ScrollView
+      style={{
+        flex: 1,
+        width: "100%",
+      }}
+      contentContainerStyle={{
+          paddingVertical: 20,
+          top: 10,
+          gap: 13,
+          flexWrap: "wrap",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-evenly",
+      }}>
+        {
+            props.items.map((e, idx) => (
+              <TouchableOpacity
+                id={`months_${idx}`}
+                style={{
+                  height: 50,
+                  width: 75,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: 24,
+                  backgroundColor: "#0000001C"
+                }}
+                onPress={() => {
+                  props.onSelectItem(e);
+                }}
+              >
+                <Text style={{ ...gstyles.t_semibold_dark, fontSize: 14 }}>{e.title}</Text>
+              </TouchableOpacity>
+            ))
+          }
+
+      </ScrollView>
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  container_selector: {
+    width: "100%",
+    maxWidth: 350
+  }
+})
