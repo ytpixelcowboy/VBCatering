@@ -28,7 +28,7 @@ const Dropdown = (props: Props) => {
                 (
                     <>
                         <Text style={gstyles.t_semibold}>{props.label}</Text>
-                        <Spacer size={2} />
+                        <Spacer size={5} />
                     </>
                 )
             }
@@ -63,7 +63,7 @@ const Dropdown = (props: Props) => {
                                     value={value}
                                 />
                             ) : (
-                                <Text style={{ ...gstyles.t_semibold, minWidth: 20 }}>{props.selected?.title || ""}</Text>
+                                <Text style={{ ...gstyles.t_semibold_dark, minWidth: 20 }}>{props.selected?.title || ""}</Text>
                             )
                         }
                         <Ionicons name='arrow-drop-down' size={28} />

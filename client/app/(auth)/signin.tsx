@@ -1,6 +1,5 @@
 import { Text, View, Image, TextInput, ScrollView, SafeAreaView, TouchableOpacity, Platform, Alert } from 'react-native'
 import React, { useState } from 'react'
-import Logo from "../../assets/images/banner_logo.png";
 import Spacer from '@/components/Spacer';
 import { gstyles } from '../styles';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -65,7 +64,7 @@ const root = () => {
                 width: 250,
                 resizeMode: "contain"
               }}
-              source={Logo} />
+              source={require("../../assets/images/banner_logo.png")} />
 
             <Text style={gstyles.t_header}>Create new account</Text>
 
@@ -73,13 +72,13 @@ const root = () => {
             <View style={gstyles.container_forms}>
               <View style={{ width: "100%" }}>
                 <Text style={gstyles.t_semibold}>First Name</Text>
-                <Spacer size={2} />
+                <Spacer size={5} />
                 <TextInput style={gstyles.input} />
               </View>
               <Spacer size={8} />
               <View style={{ width: "100%" }}>
                 <Text style={gstyles.t_semibold}>Surname</Text>
-                <Spacer size={2} />
+                <Spacer size={5} />
                 <TextInput style={{ ...gstyles.input }} />
               </View>
               <Spacer size={8} />
@@ -93,7 +92,7 @@ const root = () => {
               }}>
                 <View>
                   <Text style={gstyles.t_semibold}>Birthday</Text>
-                  <Spacer size={2} />
+                  <Spacer size={5} />
                   <TouchableOpacity style={{
                   height: 50,
                   minWidth: 150,
@@ -134,26 +133,26 @@ const root = () => {
               <Spacer size={8} />
               <View style={{ width: "100%" }}>
                 <Text style={gstyles.t_semibold}>Email</Text>
-                <Spacer size={2} />
+                <Spacer size={5} />
                 <TextInput style={{ ...gstyles.input }} inputMode='email' />
               </View>
               <Spacer size={8} />
               <View style={{ width: "100%", alignItems: "flex-start" }}>
                 <Text style={gstyles.t_semibold}>Mobile Number</Text>
-                <Spacer size={2} />
+                <Spacer size={5} />
                 <TextInput style={{ ...gstyles.sm_input }} inputMode='numeric' />
               </View>
               <Spacer size={15} />
               <View style={{ width: "100%" }}>
                 <Text style={gstyles.t_semibold}>Password</Text>
-                <Spacer size={2} />
-                <TextInput style={{ ...gstyles.input }} />
+                <Spacer size={5} />
+                <TextInput style={{ ...gstyles.input }} secureTextEntry={true}/>
               </View>
               <Spacer size={8} />
               <View style={{ width: "100%" }}>
                 <Text style={gstyles.t_semibold}>Confirm Password</Text>
-                <Spacer size={2} />
-                <TextInput style={{ ...gstyles.input }} />
+                <Spacer size={5} />
+                <TextInput style={{ ...gstyles.input }} secureTextEntry={true}/>
               </View>
               <Spacer size={20} />
               <Text style={{ ...gstyles.t_semibold_dark, alignSelf: 'flex-start', fontSize: 15 }}>I the 'Customer', has read and consent to the following aggreements:</Text>

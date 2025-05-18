@@ -1,8 +1,13 @@
-import { router } from "expo-router";
+import { sleep } from "@/lib/utils";
+import { Link, router } from "expo-router";
 import { useEffect } from "react";
 import { Text, View } from "react-native";
 
 export default function Index() {
+
+  useEffect(()=>{
+  
+  },[])
 
   return (
     <View
@@ -12,7 +17,7 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <Link href={"/(auth)/login"} >Go To Auth</Link>
     </View>
   );
 }

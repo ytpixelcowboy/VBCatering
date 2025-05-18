@@ -33,6 +33,16 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-asset",
+        {
+          "assets": [
+            "./assets/images/reservation/types/type_pax.svg",
+            "./assets/images/reservation/types/type_package.svg",
+            "./assets/images/reservation/types/type_food.svg"
+          ]
+        }
       ]
     ],
     "experiments": {

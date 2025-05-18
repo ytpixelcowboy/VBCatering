@@ -1,7 +1,7 @@
 import { router, SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useFonts } from 'expo-font';
-import { StatusBar } from "react-native";
+import { Platform, StatusBar } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -13,18 +13,27 @@ export default function RootLayout() {
     "poppins-bold": require('../assets/fonts/Poppins-Bold.ttf'),
   });
 
+
+
   useEffect(() => {
+    /*
+    if (Platform.OS == "web") {
+      router.replace("/(auth)/login")
+      return;
+    }
+    */
+
     if (loaded) {
-      SplashScreen.hideAsync(); 
-      //router.replace("/(auth)/login");
+      SplashScreen.hideAsync();
     }
   }, [loaded]);
 
   return (
     <Stack>
       <StatusBar barStyle={"dark-content"} />
+      <Stack.Screen name='index' options={{ headerShown: false }} />
       <Stack.Screen name='(auth)' options={{ headerShown: false }} />
-      <Stack.Screen name='reservation' options={{ headerShown: false }} />
+      <Stack.Screen name='(client)' options={{ headerShown: false }} />
     </Stack>
   );
 }

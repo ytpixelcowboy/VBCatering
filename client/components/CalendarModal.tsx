@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Calendar, CalendarList, Agenda, DateData } from 'react-native-calendars';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
@@ -113,24 +113,28 @@ export default function CalendarModal(props: Props) {
       zIndex: 9999,
       alignItems: "center",
       justifyContent: "center",
-      padding: 24,
+      padding: 28,
     }}>
       <View style={{
-        minWidth: 350,
-        maxWidth: 800,
+        width : "100%",
+        maxWidth: 1000,
         padding: 18,
         backgroundColor: "#FFFFFF",
-        borderRadius: 12
+        borderRadius: 12,
+        flexDirection : "row",
+        flexWrap : "wrap"
       }}>
 
         <View style={{
           width: "100%",
+          ...(Platform.OS == "web" && props.showEvents) && {maxWidth : 500}
         }}>
           {
             showMonthsSelector
             &&
             <GridSelectView
               title='Select month'
+              keyId='months'
               items={getMonthsAsFilterData()}
               onSelectItem={(item) => {
                 setSelectedMonth(item)
@@ -145,6 +149,7 @@ export default function CalendarModal(props: Props) {
             &&
             <GridSelectView
               title='Select year'
+              keyId='years'
               items={getYearsAsFilterData()}
               onSelectItem={(item) => {
                 setSelectedYear(item)
@@ -159,11 +164,11 @@ export default function CalendarModal(props: Props) {
               ...styles.container_selector
             }}>
               <View style={{
+                width: "100%",
                 alignSelf: "flex-start",
                 height: 50,
                 flexDirection: "row",
                 alignItems: "center",
-                justifyContent: "center",
                 gap: 5
               }}>
                 <TouchableOpacity style={{
@@ -178,13 +183,16 @@ export default function CalendarModal(props: Props) {
                 <Text style={{ ...gstyles.t_semibold_dark, fontSize: 14 }}>{props.label}</Text>
               </View>
               <Calendar
+                style={{
+                  width: "100%",
+                }}
                 hideArrows={true}
                 initialDate={`${selectedYear.id}-${Number(selectedMonth.id) + 1}-${props.day}`}
                 onDayPress={(date: DateData) => {
                   props.onDaySelect(date.day, date.month, date.year)
                 }}
                 enableSwipeMonths={true}
-                onMonthChange={(date : DateData)=>{
+                onMonthChange={(date: DateData) => {
                   setSelectedMonth(parseMonth(date.month))
                 }}
                 renderHeader={() => (
@@ -231,8 +239,8 @@ export default function CalendarModal(props: Props) {
         {
           props.showEvents
           &&
-          <View>
-
+          <View style={styles.container_events}>
+            <Text style={{ ...gstyles.t_semibold_dark, fontSize: 16 }}>Events</Text>
           </View>
         }
       </View>
@@ -241,6 +249,7 @@ export default function CalendarModal(props: Props) {
 }
 
 const GridSelectView = (props: {
+  keyId : string,
   title: string,
   items: IFilterData[],
   onSelectItem: (item: IFilterData) => void,
@@ -252,11 +261,11 @@ const GridSelectView = (props: {
       maxHeight: 500
     }}>
       <View style={{
+        width: "100%",
         alignSelf: "flex-start",
         height: 50,
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center",
         gap: 5
       }}>
         <TouchableOpacity style={{
@@ -269,39 +278,38 @@ const GridSelectView = (props: {
         <Text style={{ ...gstyles.t_semibold_dark, fontSize: 14 }}>{props.title}</Text>
       </View>
       <ScrollView
-      style={{
-        flex: 1,
-        width: "100%",
-      }}
-      contentContainerStyle={{
+        style={{
+          width: "100%",
+        }}
+        contentContainerStyle={{
           paddingVertical: 20,
           top: 10,
           gap: 13,
           flexWrap: "wrap",
           flexDirection: "row",
-          alignItems: "center",
+          alignItems: "flex-start",
           justifyContent: "space-evenly",
-      }}>
+        }}>
         {
-            props.items.map((e, idx) => (
-              <TouchableOpacity
-                id={`months_${idx}`}
-                style={{
-                  height: 50,
-                  width: 75,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: 24,
-                  backgroundColor: "#0000001C"
-                }}
-                onPress={() => {
-                  props.onSelectItem(e);
-                }}
-              >
-                <Text style={{ ...gstyles.t_semibold_dark, fontSize: 14 }}>{e.title}</Text>
-              </TouchableOpacity>
-            ))
-          }
+          props.items.map((e, idx) => (
+            <TouchableOpacity
+              key={`${props.keyId}_${idx}`}
+              style={{
+                height: 50,
+                width: 70,
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 24,
+                backgroundColor: "#0000001C"
+              }}
+              onPress={() => {
+                props.onSelectItem(e);
+              }}
+            >
+              <Text style={{ ...gstyles.t_semibold_dark, fontSize: 12 }}>{e.title}</Text>
+            </TouchableOpacity>
+          ))
+        }
 
       </ScrollView>
     </View>
@@ -311,6 +319,9 @@ const GridSelectView = (props: {
 const styles = StyleSheet.create({
   container_selector: {
     width: "100%",
-    maxWidth: 350
+  },
+  container_events: {
+    padding : 20,
+    minWidth: Platform.OS == "web" ? 350 : 300
   }
 })

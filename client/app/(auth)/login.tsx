@@ -1,6 +1,5 @@
-import { Text, View, Image, TextInputComponent, TextInput, TouchableOpacity, Button, ScrollView } from 'react-native'
+import { Text, View, Image, TextInput, TouchableOpacity, Button, ScrollView } from 'react-native'
 import React from 'react'
-import Logo from "../../assets/images/banner_logo.png";
 import Spacer from '@/components/Spacer';
 import Divider from '@/components/Divider';
 import { gstyles } from '../styles';
@@ -21,7 +20,7 @@ const login = () => {
                                 width: 250,
                                 resizeMode: "contain"
                             }}
-                            source={Logo} />
+                            source={require("../../assets/images/banner_logo.png")} />
 
                         <Text style={gstyles.t_header}>Login to your account</Text>
 
@@ -37,7 +36,9 @@ const login = () => {
                             <View style={{
                                 alignItems: "center"
                             }}>
-                                <TouchableOpacity style={gstyles.btn_primary}>
+                                <TouchableOpacity style={gstyles.btn_primary} onPress={() => {
+                                    router.push("/user/reservations")
+                                }}>
                                     <Text style={gstyles.t_semibold_dark}>LOGIN</Text>
                                 </TouchableOpacity>
                                 <Spacer size={5} />
