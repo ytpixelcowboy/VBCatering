@@ -161,7 +161,7 @@ const root = () => {
               <Checkbox label='Privacy Policy' isActive={chkbox_privacy} onPress={() => setChkbox_privacy(!chkbox_privacy)} />
               <Spacer size={25} />
               <TouchableOpacity style={gstyles.btn_primary} onPress={() => {
-                router.push("/")
+                router.replace("/(auth)/login");
               }}>
                 <Text style={gstyles.t_semibold_dark}>Register Now</Text>
               </TouchableOpacity>

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const menu = () => {
+const MoreMenu = () => {
   return (
     <View>
       <Text>menu</Text>
@@ -9,4 +9,4 @@ const menu = () => {
   )
 }
 
-export default menu
+export default MoreMenu
