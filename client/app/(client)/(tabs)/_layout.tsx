@@ -1,4 +1,4 @@
-import { Platform } from 'react-native'
+import { Platform, useWindowDimensions } from 'react-native'
 import React from 'react'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -8,6 +8,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import UserProfile from "./user/profile";
 import UserReservations from "./user/reservations";
 import UserInbox from "./user/inbox";
+import MoreMenu from "../../../view/client/menu";
 
 const Tabs = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -46,17 +47,19 @@ function HomeTabs() {
 }
 
 function WebDrawer() {
+
+    const width = useWindowDimensions().width;
     return (
         <Drawer.Navigator
             screenOptions={{
-                drawerType: 'permanent',
-                drawerStyle: { width: 240 },
+                drawerType: width > 620 ? "permanent" : "back",
+                drawerStyle: { width: 320 },
                 swipeEnabled: false,
-                headerLeft: Platform.OS === "web" ? () => null : undefined,
+                headerLeft: width > 620 ? () => null : undefined,
             }}
         >
             <Drawer.Screen
-                name="reservations"
+                name="Reservations"
                 component={UserReservations}
                 options={{
                     drawerLabel: "Reservations",
@@ -64,7 +67,7 @@ function WebDrawer() {
                 }}
             />
             <Drawer.Screen
-                name="inbox"
+                name="Inbox"
                 component={UserInbox}
                 options={{
                     drawerLabel: "Inbox",
@@ -72,11 +75,19 @@ function WebDrawer() {
                 }}
             />
             <Drawer.Screen
-                name="profile"
+                name="Profile"
                 component={UserProfile}
                 options={{
                     drawerLabel: 'Profile',
                     drawerIcon: () => <MaterialIcons name="person-outline" size={20} />,
+                }}
+            />
+            <Drawer.Screen
+                name="Menu"
+                component={MoreMenu}
+                options={{
+                    drawerLabel: 'Menu',
+                    drawerIcon: () => <MaterialIcons name="more" size={20} />,
                 }}
             />
         </Drawer.Navigator>
