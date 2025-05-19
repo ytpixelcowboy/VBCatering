@@ -32,7 +32,7 @@ const createReservation = () => {
                 if(router.canGoBack()){
                   router.back();
                 }else{
-                  router.navigate("/(client)/(tabs)/user/reservations")
+                  router.navigate("/user/reservations")
                 }
               }}
             >
@@ -41,9 +41,9 @@ const createReservation = () => {
             <Text style={{ ...gstyles.t_semibold_dark, fontSize: 14 }}>{"Back"}</Text>
           </View>
           <View style={{
-            paddingHorizontal: 24,
             width: "100%",
             maxWidth : 500,
+            paddingHorizontal : 20
           }}>
             <Text style={{ ...gstyles.t_semibold_dark, fontSize: 20 }}>{"Select Reservation Type"}</Text>
             <Spacer size={10} />
@@ -55,13 +55,16 @@ const createReservation = () => {
               renderItem={item => (
                 <TouchableOpacity
                   style={{
-                    width: "100%",
+                    flex : 1,
                     maxWidth: 500,
-                    padding: 24,
+                    padding: 20,
                     flexDirection: "row",
                     borderRadius: 6,
                     backgroundColor: "#D9D9D9",
                     alignItems: "center",
+                  }}
+                  onPress={()=>{
+                    router.push("/reservation/5338b20c-47a1-4dc0-8cb1-494926b9c025")
                   }}
                 >
                   <Image

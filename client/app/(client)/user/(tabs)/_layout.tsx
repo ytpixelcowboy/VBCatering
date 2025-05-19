@@ -1,13 +1,11 @@
 import { Platform, useWindowDimensions } from 'react-native'
 import React from 'react'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { Tabs } from 'expo-router';
-import SideDrawer from '@/view/client/drawer';
+import DrawerHolder from '@/components/DrawerHolder';
 
-
-function HomeTabs() {
+const RootLayout = () => {
     const width = useWindowDimensions().width;
     const isWeb = Platform.OS === 'web';
 
@@ -16,7 +14,7 @@ function HomeTabs() {
             safeAreaInsets={{ top: 10 }}
             screenOptions={{
                 tabBarActiveTintColor: "green",
-                tabBarStyle: (isWeb && width > 512) ? { display: "none" } : {},
+                tabBarStyle: (isWeb && width > 448) ? { display: "none" } : {},
             }}>
             <Tabs.Screen
                 name='reservations'
@@ -35,7 +33,7 @@ function HomeTabs() {
                 options={{
                     title: "Notification",
                     tabBarIcon: () => <MaterialIcons name='notifications' size={25} />
-            }}/>
+                }} />
             <Tabs.Screen
                 name="menu"
                 options={{
@@ -44,18 +42,6 @@ function HomeTabs() {
                 }}
             />
         </Tabs>
-    );
-}
-
-const RootLayout = () => {
-    const width = useWindowDimensions().width;
-
-    const isWeb = Platform.OS === 'web';
-
-    return (
-        <GestureHandlerRootView style={{ flex: 1 }}>
-            {(isWeb && width > 512) ? <SideDrawer/> : <HomeTabs />}
-        </GestureHandlerRootView>
     );
 };
 

@@ -41,6 +41,17 @@ export const gstyles = StyleSheet.create({
         justifyContent: "center",
         paddingHorizontal: 20,
     },
+    btn_primary_transparent: {
+        minWidth: 200,
+        alignSelf: "center",
+        height: 50,
+        backgroundColor: "#C5D0A400",
+        borderRadius: 5,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingHorizontal: 20,
+    },
     dropshadow_sm: {
         shadowColor: "#00000045",
         shadowRadius: 2,
