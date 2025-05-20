@@ -10,6 +10,12 @@ const RootLayout = () => {
             <StatusBar barStyle={"dark-content"} />
             <Stack.Screen name='login'/>
             <Stack.Screen name='signin' />
+            <Stack.Screen name='auth/verify' />
+            <Stack.Screen name='auth/registration/activation' />
+            <Stack.Screen name='auth/registration/verify' />
+            <Stack.Screen name='recovery/success' />
+            <Stack.Screen name='recovery/updatepassword' />
+            <Stack.Screen name='recovery/verify' />
         </Stack>
     )
 }

@@ -3,14 +3,12 @@ import React from 'react'
 import { router, useSegments } from 'expo-router';
 import { gstyles } from '@/app/styles';
 import { IDrawerItem } from '@/lib/types';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Image } from 'expo-image';
 import Spacer from './Spacer';
-import { DRAWERITEM_CLIENT } from '@/lib/const';
 
 type Props = {
     children?: React.ReactNode,
-    drawerItems?: IDrawerItem[];
+    drawerItems: IDrawerItem[];
 }
 
 
@@ -21,10 +19,16 @@ const DrawerHolder = (props: Props) => {
 
     const uri = useSegments();
 
-    let pathName = uri.reverse()[0] || DRAWERITEM_CLIENT[0].name;
+    let pathName = uri.reverse()[0] as string || props.drawerItems[0].name;
+
+    if(!pathName){
+        pathName = props.drawerItems[0].name;
+    }
+
+    console.log(pathName)
 
     return (
-        <View style={{ height: "100%", width: "100%", flexDirection : "row", position : "fixed" }}>
+        <View style={{ height: "100%", width: "100%", flexDirection: "row", position: "fixed" }}>
             {
                 (props.drawerItems && isWeb && props.drawerItems && width > 448)
                 &&
@@ -33,9 +37,9 @@ const DrawerHolder = (props: Props) => {
                     paddingHorizontal: 18,
                     paddingVertical: 24,
                     backgroundColor: "#E4E4E4",
-                    width: width > 620 ? 264 : 100,
+                    width: width > 620 ? 300 : 100,
                     gap: 2,
-                    zIndex : 1,
+                    zIndex: 1,
                     ...gstyles.dropshadow_sm,
                 }} >
                     <Image
@@ -48,18 +52,24 @@ const DrawerHolder = (props: Props) => {
                     <Spacer size={8} />
                     <FlatList
                         style={{
-                            flex : 1
+                            flex: 1
+                        }}
+                        contentContainerStyle={{
+                            gap : 5
                         }}
                         data={props.drawerItems}
                         renderItem={(e) => (
                             <TouchableOpacity style={e.item.name.toLocaleLowerCase() === pathName ? styles.btn_primary : styles.btn_primary_transparent}
                                 onPress={() => {
-                                    router.push(e.item.url);
+                                    if(pathName === e.item.name){
+                                        return;
+                                    }
+                                    router.navigate(e.item.url);
                                 }}>
                                 <Image
                                     style={{
-                                        width: 30,
-                                        height: 30,
+                                        width: 25,
+                                        height: 25,
                                         resizeMode: "contain"
                                     }}
                                     source={e.item.icon}
@@ -67,7 +77,7 @@ const DrawerHolder = (props: Props) => {
                                 {
                                     width > 620
                                     &&
-                                    <Text style={{ ...gstyles.t_semibold_dark, fontSize: 14 }}>{e.item.label}</Text>
+                                    <Text style={{ ...gstyles.t_base_dark, fontSize: 14 }}>{e.item.label}</Text>
                                 }
                             </TouchableOpacity>
                         )}
@@ -77,7 +87,7 @@ const DrawerHolder = (props: Props) => {
                 </View>
             }
             <View style={{
-                width: "100%",
+                flex : 1
             }}>
                 {props.children}
             </View>
@@ -90,22 +100,22 @@ export default DrawerHolder
 const styles = StyleSheet.create({
     btn_primary: {
         minWidth: 60,
-        height: 60,
-        backgroundColor: "#C5D0A4",
+        height: 50,
+        backgroundColor: "#A9B091",
         borderRadius: 5,
         flexDirection: "row",
         alignItems: "center",
-        paddingHorizontal: 15,
-        gap: 16
+        paddingHorizontal: 20,
+        gap: 12
     },
     btn_primary_transparent: {
         minWidth: 60,
-        height: 60,
+        height: 50,
         backgroundColor: "#C5D0A400",
         borderRadius: 5,
         flexDirection: "row",
         alignItems: "center",
-        paddingHorizontal: 15,
-        gap: 16
+        paddingHorizontal: 20,
+        gap: 12
     },
 })

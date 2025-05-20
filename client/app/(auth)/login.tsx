@@ -5,6 +5,7 @@ import Divider from '@/components/Divider';
 import { gstyles } from '../styles';
 import { router } from 'expo-router';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { IMG_BANNER_LOGO } from '@/lib/assets';
 
 
 const login = () => {
@@ -18,37 +19,40 @@ const login = () => {
                         <Image
                             style={{
                                 width: 250,
+                                height : 150,
                                 resizeMode: "contain"
                             }}
-                            source={require("../../assets/images/banner_logo.png")} />
+                            source={IMG_BANNER_LOGO} />
 
                         <Text style={gstyles.t_header}>Login to your account</Text>
 
                         <View style={gstyles.container_forms}>
-                            <Text style={gstyles.t_bold}>Email</Text>
+                            <Text style={{...gstyles.t_semibold, fontSize: 14}}>Email</Text>
                             <Spacer size={2} />
                             <TextInput style={gstyles.input} />
                             <Spacer size={5} />
-                            <Text style={gstyles.t_bold}>Password</Text>
+                            <Text style={{...gstyles.t_semibold, fontSize: 14}}>Password</Text>
                             <Spacer size={2} />
-                            <TextInput style={gstyles.input} />
+                            <TextInput style={gstyles.input} secureTextEntry={true} />
                             <Spacer size={10} />
                             <View style={{
                                 alignItems: "center"
                             }}>
                                 <TouchableOpacity style={gstyles.btn_primary} onPress={() => {
-                                    router.push("/user/reservations")
+                                    router.push("/(auth)/auth/verify")
                                 }}>
                                     <Text style={gstyles.t_semibold_dark}>LOGIN</Text>
                                 </TouchableOpacity>
                                 <Spacer size={5} />
-                                <TouchableOpacity>
-                                    <Text style={{ textDecorationLine: "underline" }}>Forgot Password</Text>
+                                <TouchableOpacity onPress={()=>{
+                                    router.push("/(auth)/recover")
+                                }}>
+                                    <Text style={{ textDecorationLine: "underline", fontSize : 14 }}>Forgot Password</Text>
                                 </TouchableOpacity>
                                 <Spacer size={5} />
                                 <Divider variant="default" />
                                 <Spacer size={5} />
-                                <Text style={gstyles.t_subtitle}>You dont have an account yet ?, Click Here</Text>
+                                <Text style={{...gstyles.t_subtitle}}>You dont have an account yet ?, Click Here</Text>
                                 <Spacer size={5} />
                                 <TouchableOpacity style={gstyles.btn_primary} onPress={() => {
                                     router.push("/(auth)/signin")

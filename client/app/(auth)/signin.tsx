@@ -10,6 +10,7 @@ import { IFilterData } from '@/lib/types';
 import { Filters_Sex } from '@/lib/const';
 import CalendarModal from '@/components/CalendarModal';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { IMG_BANNER_LOGO } from '@/lib/assets';
 
 
 const root = () => {
@@ -64,20 +65,20 @@ const root = () => {
                 width: 250,
                 resizeMode: "contain"
               }}
-              source={require("../../assets/images/banner_logo.png")} />
+              source={IMG_BANNER_LOGO} />
 
             <Text style={gstyles.t_header}>Create new account</Text>
 
             <Spacer size={10} />
             <View style={gstyles.container_forms}>
               <View style={{ width: "100%" }}>
-                <Text style={gstyles.t_semibold}>First Name</Text>
+                <Text style={{...gstyles.t_semibold, fontSize: 14}}>First Name</Text>
                 <Spacer size={5} />
                 <TextInput style={gstyles.input} />
               </View>
               <Spacer size={8} />
               <View style={{ width: "100%" }}>
-                <Text style={gstyles.t_semibold}>Surname</Text>
+                <Text style={{...gstyles.t_semibold, fontSize: 14}}>Surname</Text>
                 <Spacer size={5} />
                 <TextInput style={{ ...gstyles.input }} />
               </View>
@@ -91,7 +92,7 @@ const root = () => {
                 alignItems: "center"
               }}>
                 <View>
-                  <Text style={gstyles.t_semibold}>Birthday</Text>
+                  <Text style={{...gstyles.t_semibold, fontSize: 14}}>Birthday</Text>
                   <Spacer size={5} />
                   <TouchableOpacity style={{
                   height: 50,
@@ -111,7 +112,7 @@ const root = () => {
                 }}
                 >
                   <MaterialIcons name='calendar-month' size={25} />
-                  <Text style={gstyles.t_semibold_dark}>{`${bdate_month} / ${bdate_day} / ${bdate_year}`}</Text>
+                  <Text style={{...gstyles.t_semibold_dark, fontSize: 14}}>{`${bdate_month} / ${bdate_day} / ${bdate_year}`}</Text>
                 </TouchableOpacity>
                 </View>
                 <Dropdown
@@ -132,25 +133,25 @@ const root = () => {
               </View>
               <Spacer size={8} />
               <View style={{ width: "100%" }}>
-                <Text style={gstyles.t_semibold}>Email</Text>
+                <Text style={{...gstyles.t_semibold, fontSize: 14}}>Email</Text>
                 <Spacer size={5} />
                 <TextInput style={{ ...gstyles.input }} inputMode='email' />
               </View>
               <Spacer size={8} />
               <View style={{ width: "100%", alignItems: "flex-start" }}>
-                <Text style={gstyles.t_semibold}>Mobile Number</Text>
+                <Text style={{...gstyles.t_semibold, fontSize: 14}}>Mobile Number</Text>
                 <Spacer size={5} />
                 <TextInput style={{ ...gstyles.sm_input }} inputMode='numeric' />
               </View>
               <Spacer size={15} />
               <View style={{ width: "100%" }}>
-                <Text style={gstyles.t_semibold}>Password</Text>
+                <Text style={{...gstyles.t_semibold, fontSize: 14}}>Password</Text>
                 <Spacer size={5} />
                 <TextInput style={{ ...gstyles.input }} secureTextEntry={true}/>
               </View>
               <Spacer size={8} />
               <View style={{ width: "100%" }}>
-                <Text style={gstyles.t_semibold}>Confirm Password</Text>
+                <Text style={{...gstyles.t_semibold, fontSize: 14}}>Confirm Password</Text>
                 <Spacer size={5} />
                 <TextInput style={{ ...gstyles.input }} secureTextEntry={true}/>
               </View>
@@ -161,7 +162,7 @@ const root = () => {
               <Checkbox label='Privacy Policy' isActive={chkbox_privacy} onPress={() => setChkbox_privacy(!chkbox_privacy)} />
               <Spacer size={25} />
               <TouchableOpacity style={gstyles.btn_primary} onPress={() => {
-                router.replace("/(auth)/login");
+                router.replace("/(auth)/auth/registration/verify");
               }}>
                 <Text style={gstyles.t_semibold_dark}>Register Now</Text>
               </TouchableOpacity>

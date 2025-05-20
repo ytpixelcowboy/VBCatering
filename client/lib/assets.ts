@@ -1,0 +1,1 @@
+export const IMG_BANNER_LOGO = require("../assets/images/banner_logo.png")

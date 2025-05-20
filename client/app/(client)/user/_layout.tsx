@@ -7,7 +7,7 @@ import { DRAWERITEM_CLIENT } from '@/lib/const'
 const RootLayout = () => {
     return (
         <Stack>
-            <Stack.Screen name='profile' options={{ headerShown: false }} />
+            <Stack.Screen name='profile' />
             <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
         </Stack>
 

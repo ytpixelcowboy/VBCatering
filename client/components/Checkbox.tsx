@@ -31,7 +31,7 @@ export const Checkbox = (props: Props) => {
             </TouchableOpacity>
             {
                 props.label &&
-                <Text style={gstyles.t_base}>{props.label}</Text>
+                <Text style={{...gstyles.t_base, fontSize: 14}}>{props.label}</Text>
             }
         </View>
     )
