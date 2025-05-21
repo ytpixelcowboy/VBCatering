@@ -86,7 +86,7 @@ const TextInputOTP = (props: {
     }, [value])
 
     return (
-        <TextInput style={{...styles.input_opt, fontSize : 14}} maxLength={1} value={value} inputMode='numeric' onChangeText={handleChangeText} />
+        <TextInput style={{...styles.input_opt, fontSize : 14}} maxLength={1} value={value} inputMode='numeric' on onChangeText={handleChangeText} />
     )
 }
 

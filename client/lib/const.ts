@@ -12,10 +12,6 @@ export const Filters_Sex = [
     title: "Female",
   },
   {
-    id: "yes",
-    title: "Yes",
-  },
-  {
     id: "other",
     title: "Others",
   },
