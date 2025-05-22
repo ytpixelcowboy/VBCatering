@@ -2,7 +2,7 @@ import {View } from 'react-native'
 import React from 'react'
 
 type Props = {
-    variant : "default" | "light"
+    variant : "default" | "light" | "dark"
 }
 
 const Divider = (props : Props) => {
@@ -18,4 +18,6 @@ const Divider = (props : Props) => {
   )
 }
 
+
 export default Divider
+

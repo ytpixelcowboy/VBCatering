@@ -15,9 +15,10 @@ const dashboard = () => {
         flexDirection: 'row',
         flexWrap: 'wrap',
         padding: 24,
-        gap: 18,
+        gap: 10,
       }} collapsable={true}>
         <ScrollView
+          scrollIndicatorInsets={{left: 100}}
           style={{
             height: "100%",
             flex: width > 620 ? 3 : 1,
