@@ -3,7 +3,6 @@ import React from 'react'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 
 import { Tabs } from 'expo-router';
-import DrawerHolder from '@/components/DrawerHolder';
 
 const RootLayout = () => {
     const width = useWindowDimensions().width;

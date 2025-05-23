@@ -1,7 +1,7 @@
 import { Text, View, Image, TextInput, ScrollView, SafeAreaView, TouchableOpacity, Platform, Alert } from 'react-native'
 import React, { useState } from 'react'
 import Spacer from '@/components/Spacer';
-import { gstyles } from '../styles';
+import { gstyles } from '../../lib/styles';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Checkbox from '@/components/Checkbox';
 import { router } from 'expo-router';

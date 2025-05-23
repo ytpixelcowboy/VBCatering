@@ -5,7 +5,7 @@ import { router } from 'expo-router'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import Spacer from '@/components/Spacer'
 import { OPTIONS_RESERVATION_TYPE } from '@/lib/const'
-import { gstyles } from '../styles'
+import { gstyles } from '../../lib/styles'
 import { Image } from 'expo-image';
 import { useExpoRouter } from 'expo-router/build/global-state/router-store'
 

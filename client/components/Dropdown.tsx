@@ -1,6 +1,6 @@
 import { FlatList, ScrollView, StyleProp, StyleSheet, Text, TextInput, TouchableOpacity, View, ViewStyle } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { gstyles } from '@/app/styles'
+import { gstyles } from '@/lib/styles'
 import Spacer from './Spacer'
 import Ionicons from "@expo/vector-icons/MaterialIcons";
 import { IFilterData } from '@/lib/types';

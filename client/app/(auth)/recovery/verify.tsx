@@ -1,7 +1,7 @@
 import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { gstyles } from '@/app/styles'
+import { gstyles } from '@/lib/styles'
 import { Image } from 'expo-image'
 import Spacer from '@/components/Spacer'
 import { router } from 'expo-router'

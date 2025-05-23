@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Platform, StyleSheet, Text, useWindowDimensions, View } from 'react-native'
 import React from 'react'
-import { Stack } from 'expo-router'
+import { Redirect, router, Stack } from 'expo-router'
 import DrawerHolder from '@/components/DrawerHolder'
 import { DRAWERITEM_CLIENT } from '@/lib/const'
 
 const RootLayout = () => {
+
     return (
         <Stack>
             <Stack.Screen name='profile' />
@@ -12,7 +13,12 @@ const RootLayout = () => {
         </Stack>
 
     )
+
+
 }
+
+
+
 
 export default RootLayout
 

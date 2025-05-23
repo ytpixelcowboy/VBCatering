@@ -9,10 +9,10 @@ const RootLayout = () => {
     <DrawerHolder
       drawerItems={DRAWERITEM_ADMIN}>
       <Stack>
-        <Stack.Screen name='dashboard' />
+        <Stack.Screen name='(tabs)' options={{
+          headerShown : false
+        }} />
         <Stack.Screen name='manageaccounts' />
-        <Stack.Screen name='managereservations' />
-        <Stack.Screen name='managefoods' />
         <Stack.Screen name='managefinance' />
         <Stack.Screen name='financeanalytics' />
         <Stack.Screen name='customerfeedbacks' />

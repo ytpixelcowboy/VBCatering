@@ -1,7 +1,7 @@
 import { Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Ionicons from "@expo/vector-icons/MaterialIcons";
-import { gstyles } from '@/app/styles';
+import { gstyles } from '@/lib/styles';
 
 type Props = {
     label?: string,

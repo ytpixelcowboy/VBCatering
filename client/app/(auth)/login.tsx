@@ -2,7 +2,7 @@ import { Text, View, Image, TextInput, TouchableOpacity, Button, ScrollView } fr
 import React from 'react'
 import Spacer from '@/components/Spacer';
 import Divider from '@/components/Divider';
-import { gstyles } from '../styles';
+import { gstyles } from '../../lib/styles';
 import { router } from 'expo-router';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { IMG_BANNER_LOGO } from '@/lib/assets';

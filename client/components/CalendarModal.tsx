@@ -2,7 +2,7 @@ import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from '
 import React, { useEffect, useState } from 'react'
 import { Calendar, CalendarList, Agenda, DateData } from 'react-native-calendars';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { gstyles } from '@/app/styles';
+import { gstyles } from '@/lib/styles';
 import { IFilterData } from '@/lib/types';
 import Dropdown from './Dropdown';
 import { Locale_US_EN_MONTHS_SHORT } from '@/lib/const';

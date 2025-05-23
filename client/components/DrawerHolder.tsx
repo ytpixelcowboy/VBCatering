@@ -1,7 +1,7 @@
 import { FlatList, Platform, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native'
 import React from 'react'
 import { router, useSegments } from 'expo-router';
-import { gstyles } from '@/app/styles';
+import { gstyles } from '@/lib/styles';
 import { IDrawerItem } from '@/lib/types';
 import { Image } from 'expo-image';
 import Spacer from './Spacer';

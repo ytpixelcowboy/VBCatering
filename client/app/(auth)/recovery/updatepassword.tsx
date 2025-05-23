@@ -7,7 +7,7 @@ import { IFilterData } from '@/lib/types';
 import { Filters_Sex } from '@/lib/const';
 import CalendarModal from '@/components/CalendarModal';
 import { IMG_BANNER_LOGO } from '@/lib/assets';
-import { gstyles } from '@/app/styles';
+import { gstyles } from '@/lib/styles';
 
 
 const root = () => {

@@ -4,7 +4,7 @@ import Spacer from '@/components/Spacer';
 import Divider from '@/components/Divider';
 import { router } from 'expo-router';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { gstyles } from '@/app/styles';
+import { gstyles } from '@/lib/styles';
 import { IMG_BANNER_LOGO } from '@/lib/assets';
 
 
@@ -55,7 +55,7 @@ const verify = () => {
                         <Spacer size={20} />
                         <TouchableOpacity style={gstyles.btn_primary} onPress={() => {
                             if(input1 === "1"){
-                                router.replace("/(admin)/admin/dashboard")
+                                router.replace("/admin/dashboard")
                             }else{
                                 router.replace("/(client)/user/(tabs)/reservations")
                             }

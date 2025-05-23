@@ -1,7 +1,7 @@
 import { SafeAreaView, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native'
 import React from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { gstyles } from '@/app/styles'
+import { gstyles } from '@/lib/styles'
 import Spacer from '@/components/Spacer'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 
@@ -15,7 +15,7 @@ const dashboard = () => {
         flexDirection: 'row',
         flexWrap: 'wrap',
         padding: 24,
-        gap: 10,
+        gap: 5,
       }} collapsable={true}>
         <ScrollView
           scrollIndicatorInsets={{left: 100}}
