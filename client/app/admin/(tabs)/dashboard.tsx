@@ -14,7 +14,7 @@ const dashboard = () => {
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        padding: 24,
+        padding: 18,
         gap: 5,
       }} collapsable={true}>
         <ScrollView
@@ -104,7 +104,6 @@ const dashboard = () => {
           <View style={{
             width: "100%",
             height: 1000,
-            backgroundColor: "black"
           }}>
 
           </View>
@@ -140,7 +139,7 @@ const PartnerNotice = () => {
 
       <View style={{
         flex: 1,
-        backgroundColor: "#D9D9D9",
+        backgroundColor: "#81B7656B",
         borderRadius: 8
       }}>
 

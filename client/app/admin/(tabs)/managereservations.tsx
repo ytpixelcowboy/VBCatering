@@ -22,8 +22,8 @@ const data = [
   },
   {
     id: "5338b20c-47a1-4dc0-8cb1-494926b9c125",
-    status: "pending",
-    cateringType: "catering-only",
+    status: "reserved",
+    cateringType: "catering-events",
     items: [
 
     ],
@@ -33,8 +33,8 @@ const data = [
   },
   {
     id: "5338b20c-47a1-4dc0-8cb1-494926b9c225",
-    status: "pending",
-    cateringType: "catering-only",
+    status: "completed",
+    cateringType: "food-only",
     items: [
 
     ],
@@ -56,11 +56,11 @@ const managereservations = () => {
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        padding: 24,
+        padding: 18,
         gap: 10,
       }} collapsable={true}>
         {
-          (viewType === "list" && width > 1200 && isWeb)
+          (viewType === "list" && width > 1080 && isWeb)
           &&
           (
             <View style={{
@@ -78,23 +78,35 @@ const managereservations = () => {
                   fontSize: 14,
                 }}>
                   <th style={styles.table_cell}>Status</th>
-                  <th style={styles.table_cell}>Id</th>
+                  <th style={{
+                    ...styles.table_cell,
+                    minWidth: 80
+                  }}>Id</th>
                   <th style={styles.table_cell}>Type</th>
                   <th style={{
                     ...styles.table_cell,
                     width: 50
                   }}>Items Count</th>
-                  <th style={styles.table_cell}>Reserve Date</th>
+                  <th style={{
+                    ...styles.table_cell,
+                    minWidth: 80,
+                  }}>Reserve Date</th>
                   <th style={styles.table_cell}>Payment Status</th>
-                  <th style={styles.table_cell}>Created at</th>
-                  <th style={styles.table_cell}>Actions</th>
+                  <th style={{
+                    ...styles.table_cell,
+                    minWidth: 80,
+                  }}>Created at</th>
+                  <th style={{
+                    ...styles.table_cell,
+                    minWidth: 80,
+                  }}>Actions</th>
                 </thead>
                 <tbody style={{
                   justifyItems: "normal",
                 }}>
                   {
                     data?.map((e, idx) => (
-                      <tr key={idx} style={{
+                      <tr key={`reservation_${idx}`} style={{
                         ...gstyles.t_base_dark,
                         fontSize: 14,
                         textAlign: "center",
@@ -102,7 +114,14 @@ const managereservations = () => {
                         textWrap: "wrap",
                         backgroundColor: idx % 2 == 0 ? "#F9F9F9C4" : "#D9D9D9",
                       }}>
-                        <td>{e.status}</td>
+                        <td style={styles.table_cell}>
+                          <Text style={{
+                            ...gstyles.t_semibold_dark,
+                            backgroundColor : "#81B7656B",
+                            padding : 14,
+                            borderRadius : 25
+                          }}>{e.status}</Text>
+                        </td>
                         <td style={{
                           maxWidth: 150,
                         }}>{e.id}</td>
@@ -111,21 +130,24 @@ const managereservations = () => {
                         <td style={styles.table_cell}>{formatTime(e.reservationDate)}</td>
                         <td style={styles.table_cell}>{e.paymentStatus}</td>
                         <td style={styles.table_cell}>{formatTime(e.createdAt)}</td>
-                        <td style={{
-                          ...styles.table_cell,
-                          maxWidth: 80,
-                        }}>
-                          <TouchableOpacity style={gstyles.btn_negative} onPress={() => {
-                            router.push("/")
+                        <td style={styles.table_cell}>
+                          <View style={{
+                            flex: 1,
+                            flexDirection: "row",
+                            gap: 10,
+                            justifyContent: "center"
                           }}>
-                            <Text style={{ ...gstyles.t_semibold, color: "#FFFFFF" }}>Decline</Text>
-                          </TouchableOpacity>
-
-                          <TouchableOpacity style={gstyles.btn_nuetral} onPress={() => {
-                            router.push("/")
-                          }}>
-                            <Text style={{ ...gstyles.t_semibold, color: "#FFFFFF" }}>Review</Text>
-                          </TouchableOpacity>
+                            <TouchableOpacity style={gstyles.btn_nuetral} onPress={() => {
+                              router.push(`/admin/reservation/${e.id}`)
+                            }}>
+                              <Text style={{ ...gstyles.t_semibold, color: "#FFFFFF" }}>Review</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={gstyles.btn_negative} onPress={() => {
+                              router.push("/")
+                            }}>
+                              <MaterialIcons name='close' size={25} color={"white"} />
+                            </TouchableOpacity>
+                          </View>
                         </td>
                       </tr>
                     ))
@@ -138,7 +160,7 @@ const managereservations = () => {
           (
             <FlatList
               style={{
-                height : "100%"
+                height: "100%"
               }}
               contentContainerStyle={{
                 gap: 10
@@ -150,72 +172,69 @@ const managereservations = () => {
                   borderRadius: 6,
                 }}>
                   <View style={{
-                    height: 65,
-                    backgroundColor: "#A4A4A4",
+                    height: 60,
+                    backgroundColor: "#81B7656B",
                     borderRadius: 6,
                     flexDirection: "row",
                     alignItems: "center",
                     paddingHorizontal: 18,
                   }}>
                     <View style={{
+                      flex: 1,
                       flexDirection: "row",
                       alignItems: "center",
                       gap: 10
                     }}>
                       <MaterialIcons name='access-time' size={25} />
-                      <Text style={{ ...gstyles.t_semibold_dark, fontSize: 14 }}>Pending</Text>
+                      <Text style={{ ...gstyles.t_semibold_dark, fontSize: 14 }}>{e.item.status}</Text>
                     </View>
 
-                    <Text style={{ ...gstyles.t_base_dark, minWidth: 200, fontSize: 12, textAlign: "right", flexWrap: "wrap" }}>08/28/2024 - 12:21 PM</Text>
+                    <Text style={{ ...gstyles.t_base_dark, minWidth: 200, fontSize: 12, textAlign: "right", flexWrap: "wrap" }}>{formatTime(e.item.createdAt)}</Text>
                   </View>
 
                   <View style={{
                     width: "100%",
-                    paddingVertical: 18,
                     paddingHorizontal: 18,
-                    gap: 5,
+                    paddingVertical: 10,
                     flexDirection: "row",
                     flexWrap: "wrap",
-                    justifyContent : "space-between"
+                    justifyContent: "space-between",
+                    gap : 8
                   }}>
+                    <View style={{
+                      
+                    }}>
+                      <Text style={{ ...gstyles.t_base, fontSize: 12 }}>Reservation ID: </Text>
+                      <Text style={{ ...gstyles.t_base_dark, fontSize: 14 }}>{e.item.id}</Text>
+                    </View>
                     <View style={styles.container_type}>
-                      <MaterialIcons name='room-service' size={30} />
+                      <MaterialIcons name='room-service' size={25} />
                       <View style={{
                         flex: 1,
                         paddingHorizontal: 18,
                       }}>
                         <Text style={{ ...gstyles.t_base, fontSize: 12 }}>Type:</Text>
-                        <Text style={{ ...gstyles.t_base_dark, fontSize: 14 }}>{"Catering Service Only"}</Text>
+                        <Text style={{ ...gstyles.t_base_dark, fontSize: 14 }}>{e.item.cateringType}</Text>
                       </View>
                     </View>
                     <View style={styles.container_type}>
-                      <MaterialIcons name='shopping-cart' size={30} />
-                      <View style={{
-                        flex: 1,
-                        paddingHorizontal: 18,
-                      }}>
-                        <Text style={{ ...gstyles.t_base, fontSize: 12 }}>Items Count:</Text>
-                        <Text style={{ ...gstyles.t_base_dark, fontSize: 14 }}>{"Catering Service Only"}</Text>
-                      </View>
-                    </View>
-                    <View style={styles.container_type}>
-                      <MaterialIcons name='calendar-month' size={30} />
+                      <MaterialIcons name='calendar-month' size={25} />
                       <View style={{
                         flex: 1,
                         paddingHorizontal: 18,
                       }}>
                         <Text style={{ ...gstyles.t_base, fontSize: 12 }}>Reservation Target:</Text>
-                        <Text style={{ ...gstyles.t_base_dark, fontSize: 14 }}>{"06/27/2024"}</Text>
+                        <Text style={{ ...gstyles.t_base_dark, fontSize: 14 }}>{formatTime(e.item.reservationDate)}</Text>
                       </View>
                     </View>
                     <View style={styles.container_type}>
-                      <MaterialIcons name='credit-card' size={30} />
+                      <MaterialIcons name='credit-card' size={25} />
                       <View style={{
                         flex: 1,
                         paddingHorizontal: 18,
                       }}>
                         <Text style={{ ...gstyles.t_base, fontSize: 12 }}>Payment Status</Text>
-                        <Text style={{ ...gstyles.t_base_dark, fontSize: 14 }}>{"Reservation Paid"}</Text>
+                        <Text style={{ ...gstyles.t_base_dark, fontSize: 14 }}>{e.item.paymentStatus}</Text>
                       </View>
                     </View>
                   </View>
@@ -223,22 +242,33 @@ const managereservations = () => {
                     width: "100%",
                     flexDirection: "row",
                     flexWrap: "nowrap",
-                    gap: 5,
                     paddingHorizontal: 18,
                     paddingVertical: 18,
+                    alignItems : "center",
                     justifyContent: "center"
                   }}>
-                    <TouchableOpacity style={gstyles.btn_negative} onPress={() => {
-                      router.push("/")
+                    <View style={{
+                      flex: 1,
                     }}>
-                      <Text style={{ ...gstyles.t_semibold, color: "#FFFFFF" }}>Decline</Text>
-                    </TouchableOpacity>
+                      <Text style={{ ...gstyles.t_base, fontSize: 12 }}>Items Count:</Text>
+                      <Text style={{ ...gstyles.t_base_dark, fontSize: 16 }}>{e.item.items.length}</Text>
+                    </View>
+                    <View style={{
+                      gap: 5,
+                      flexDirection: "row",
+                    }}>
+                      <TouchableOpacity style={gstyles.btn_negative} onPress={() => {
+                        router.push("/")
+                      }}>
+                        <MaterialIcons name='close' size={25} color={"white"} />
+                      </TouchableOpacity>
 
-                    <TouchableOpacity style={gstyles.btn_nuetral} onPress={() => {
-                      router.push("/")
-                    }}>
-                      <Text style={{ ...gstyles.t_semibold, color: "#FFFFFF" }}>Review</Text>
-                    </TouchableOpacity>
+                      <TouchableOpacity style={gstyles.btn_nuetral} onPress={() => {
+                        router.push(`/admin/reservation/${e.item.id}`);
+                      }}>
+                        <Text style={{ ...gstyles.t_semibold, color: "#FFFFFF" }}>Review</Text>
+                      </TouchableOpacity>
+                    </View>
                   </View>
                 </View>
               )}

@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native"
 export const gstyles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 24
+        padding: 18
     },
     container_center: {
         alignItems: "center",
@@ -31,7 +31,7 @@ export const gstyles = StyleSheet.create({
         paddingHorizontal: 18
     },
     btn_primary: {
-        minWidth: 200,
+        minWidth: 60,
         alignSelf: "center",
         height: 50,
         backgroundColor: "#C5D0A4",
@@ -42,7 +42,7 @@ export const gstyles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     btn_negative: {
-        minWidth: 120,
+        minWidth: 60,
         alignSelf: "center",
         height: 50,
         backgroundColor: "#F3274C",
@@ -53,7 +53,7 @@ export const gstyles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     btn_nuetral: {
-        minWidth: 120,
+        minWidth: 60,
         alignSelf: "center",
         height: 50,
         backgroundColor: "#6E69F0",
@@ -65,7 +65,7 @@ export const gstyles = StyleSheet.create({
         color : "#FFFFFF"
     },
     btn_primary_transparent: {
-        minWidth: 200,
+        minWidth: 60,
         alignSelf: "center",
         height: 50,
         backgroundColor: "#C5D0A400",
