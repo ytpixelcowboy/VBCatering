@@ -53,7 +53,10 @@ const verify = () => {
 
                         </View>
                         <Spacer size={20} />
-                        <TouchableOpacity style={gstyles.btn_primary} onPress={() => {
+                        <TouchableOpacity style={{
+                            ...gstyles.btn_primary,
+                            paddingHorizontal : 34
+                        }} onPress={() => {
                             if(input1 === "1"){
                                 router.replace("/admin/dashboard")
                             }else{

@@ -1,4 +1,4 @@
-import { Text, View, Image, TextInput, ScrollView, SafeAreaView, TouchableOpacity, Platform, Alert } from 'react-native'
+import { Text, View, Image, TextInput, ScrollView, SafeAreaView, TouchableOpacity, Platform, Alert, Modal } from 'react-native'
 import React, { useState } from 'react'
 import Spacer from '@/components/Spacer';
 import { gstyles } from '../../lib/styles';
@@ -31,27 +31,42 @@ const root = () => {
   return (
     <SafeAreaProvider style={{ backgroundColor: "#f9f9f9" }}>
       <SafeAreaView style={{ flex: 1 }} collapsable={true}>
-        {
-          showModalCalender
-          &&
-          <CalendarModal
-            fromYear={1900}
-            label='Select your birthdate'
-            showEvents={false}
-            day={bdate_day}
-            month={bdate_month}
-            year={bdate_year}
-            onClose={() => {
-              setShowModalCalendar((prev) => !prev)
-            }}
-            onDaySelect={(day, month, year) => {
-              setBdateDay(day);
-              setBdateMonth(month)
-              setBdateYear(year)
-              setShowModalCalendar((prev) => !prev)
-            }}
-          />
-        }
+        <Modal
+          style={{
+            position: "absolute"
+          }}
+          animationType='slide'
+          visible={showModalCalender}>
+          <View
+            style={{
+              width: "100%",
+              height: "100%",
+              backgroundColor: "#00000073",
+              zIndex: 9999,
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 28,
+            }}>
+            <CalendarModal
+              fromYear={1900}
+              label='Select your birthdate'
+              showEvents={false}
+              day={bdate_day}
+              month={bdate_month}
+              year={bdate_year}
+              onClose={() => {
+                setShowModalCalendar((prev) => !prev)
+              }}
+              onDaySelect={(day, month, year) => {
+                setBdateDay(day);
+                setBdateMonth(month)
+                setBdateYear(year)
+                setShowModalCalendar((prev) => !prev)
+              }}
+            />
+          </View>
+
+        </Modal>
 
         <ScrollView style={{
           width: "100%",
@@ -72,13 +87,13 @@ const root = () => {
             <Spacer size={10} />
             <View style={gstyles.container_forms}>
               <View style={{ width: "100%" }}>
-                <Text style={{...gstyles.t_semibold, fontSize: 14}}>First Name</Text>
+                <Text style={{ ...gstyles.t_semibold, fontSize: 14 }}>First Name</Text>
                 <Spacer size={5} />
                 <TextInput style={gstyles.input} />
               </View>
               <Spacer size={8} />
               <View style={{ width: "100%" }}>
-                <Text style={{...gstyles.t_semibold, fontSize: 14}}>Surname</Text>
+                <Text style={{ ...gstyles.t_semibold, fontSize: 14 }}>Surname</Text>
                 <Spacer size={5} />
                 <TextInput style={{ ...gstyles.input }} />
               </View>
@@ -92,28 +107,28 @@ const root = () => {
                 alignItems: "center"
               }}>
                 <View>
-                  <Text style={{...gstyles.t_semibold, fontSize: 14}}>Birthday</Text>
+                  <Text style={{ ...gstyles.t_semibold, fontSize: 14 }}>Birthday</Text>
                   <Spacer size={5} />
                   <TouchableOpacity style={{
-                  height: 50,
-                  minWidth: 150,
-                  alignItems: "center",
-                  backgroundColor: "#D9D9D9",
-                  borderRadius: 5,
-                  paddingVertical: 12,
-                  paddingHorizontal: 16,
-                  gap : 10,
-                  justifyContent : "flex-start",
-                  alignContent: "flex-start",
-                  flexDirection : "row"
-                }}
-                onPress={()=>{
-                  setShowModalCalendar((prev)=> !prev)
-                }}
-                >
-                  <MaterialIcons name='calendar-month' size={25} />
-                  <Text style={{...gstyles.t_semibold_dark, fontSize: 14}}>{`${bdate_month} / ${bdate_day} / ${bdate_year}`}</Text>
-                </TouchableOpacity>
+                    height: 50,
+                    minWidth: 150,
+                    alignItems: "center",
+                    backgroundColor: "#D9D9D9",
+                    borderRadius: 5,
+                    paddingVertical: 12,
+                    paddingHorizontal: 16,
+                    gap: 10,
+                    justifyContent: "flex-start",
+                    alignContent: "flex-start",
+                    flexDirection: "row"
+                  }}
+                    onPress={() => {
+                      setShowModalCalendar((prev) => !prev)
+                    }}
+                  >
+                    <MaterialIcons name='calendar-month' size={25} />
+                    <Text style={{ ...gstyles.t_semibold_dark, fontSize: 14 }}>{`${bdate_month} / ${bdate_day} / ${bdate_year}`}</Text>
+                  </TouchableOpacity>
                 </View>
                 <Dropdown
                   style={{
@@ -133,27 +148,27 @@ const root = () => {
               </View>
               <Spacer size={8} />
               <View style={{ width: "100%" }}>
-                <Text style={{...gstyles.t_semibold, fontSize: 14}}>Email</Text>
+                <Text style={{ ...gstyles.t_semibold, fontSize: 14 }}>Email</Text>
                 <Spacer size={5} />
                 <TextInput style={{ ...gstyles.input }} inputMode='email' />
               </View>
               <Spacer size={8} />
               <View style={{ width: "100%", alignItems: "flex-start" }}>
-                <Text style={{...gstyles.t_semibold, fontSize: 14}}>Mobile Number</Text>
+                <Text style={{ ...gstyles.t_semibold, fontSize: 14 }}>Mobile Number</Text>
                 <Spacer size={5} />
                 <TextInput style={{ ...gstyles.sm_input }} inputMode='numeric' />
               </View>
               <Spacer size={15} />
               <View style={{ width: "100%" }}>
-                <Text style={{...gstyles.t_semibold, fontSize: 14}}>Password</Text>
+                <Text style={{ ...gstyles.t_semibold, fontSize: 14 }}>Password</Text>
                 <Spacer size={5} />
-                <TextInput style={{ ...gstyles.input }} secureTextEntry={true}/>
+                <TextInput style={{ ...gstyles.input }} secureTextEntry={true} />
               </View>
               <Spacer size={8} />
               <View style={{ width: "100%" }}>
-                <Text style={{...gstyles.t_semibold, fontSize: 14}}>Confirm Password</Text>
+                <Text style={{ ...gstyles.t_semibold, fontSize: 14 }}>Confirm Password</Text>
                 <Spacer size={5} />
-                <TextInput style={{ ...gstyles.input }} secureTextEntry={true}/>
+                <TextInput style={{ ...gstyles.input }} secureTextEntry={true} />
               </View>
               <Spacer size={20} />
               <Text style={{ ...gstyles.t_semibold_dark, alignSelf: 'flex-start', fontSize: 15 }}>I the 'Customer', has read and consent to the following aggreements:</Text>
@@ -161,7 +176,10 @@ const root = () => {
               <Checkbox label='Terms and Condition' isActive={chkbox_tos} onPress={() => setChkbox_tos(!chkbox_tos)} />
               <Checkbox label='Privacy Policy' isActive={chkbox_privacy} onPress={() => setChkbox_privacy(!chkbox_privacy)} />
               <Spacer size={25} />
-              <TouchableOpacity style={gstyles.btn_primary} onPress={() => {
+              <TouchableOpacity style={{
+                ...gstyles.btn_primary,
+                paddingHorizontal: 34
+              }} onPress={() => {
                 router.replace("/(auth)/auth/registration/verify");
               }}>
                 <Text style={gstyles.t_semibold_dark}>Register Now</Text>

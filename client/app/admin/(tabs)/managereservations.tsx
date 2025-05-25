@@ -65,12 +65,13 @@ const managereservations = () => {
           (
             <View style={{
               width: "100%",
-              backgroundColor: "#D9D9D9",
-              borderRadius: 8
+              
             }}>
               <table style={{
+                borderRadius: 8,
+                backgroundColor: "#D9D9D9",
                 tableLayout: "fixed",
-                borderCollapse: "collapse"
+                borderCollapse : "collapse"
               }}>
                 <thead style={{
                   height: 60,
@@ -106,13 +107,14 @@ const managereservations = () => {
                 }}>
                   {
                     data?.map((e, idx) => (
-                      <tr key={`reservation_${idx}`} style={{
+                      <tr key={`reservation_${idx}`} 
+                      style={{
                         ...gstyles.t_base_dark,
                         fontSize: 14,
                         textAlign: "center",
                         flexShrink: 0,
                         textWrap: "wrap",
-                        backgroundColor: idx % 2 == 0 ? "#F9F9F9C4" : "#D9D9D9",
+                        backgroundColor : "#F9F9F9C4",
                       }}>
                         <td style={styles.table_cell}>
                           <Text style={{

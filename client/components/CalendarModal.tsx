@@ -106,16 +106,6 @@ export default function CalendarModal(props: Props) {
 
   return (
     <View style={{
-      position: "absolute",
-      width: "100%",
-      height: "100%",
-      backgroundColor: "#00000073",
-      zIndex: 9999,
-      alignItems: "center",
-      justifyContent: "center",
-      padding: 28,
-    }}>
-      <View style={{
         width : "100%",
         maxWidth: 1000,
         padding: 18,
@@ -244,7 +234,6 @@ export default function CalendarModal(props: Props) {
           </View>
         }
       </View>
-    </View>
   )
 }
 

@@ -31,7 +31,10 @@ const verify = () => {
                             <Spacer size={20} />
                             <Text style={{...gstyles.t_semibold, textAlign: "center", fontSize : 14 }}>Magic link expires within 3 minutes</Text>
                             <Spacer size={10} />
-                            <TouchableOpacity style={gstyles.btn_primary} onPress={() => {
+                            <TouchableOpacity style={{
+                                ...gstyles.btn_primary,
+                                paddingHorizontal : 34
+                            }} onPress={() => {
                                 router.replace("/(auth)/auth/registration/activation")
                             }}>
                                 <Text style={gstyles.t_semibold_dark}>VERIFY CODE</Text>

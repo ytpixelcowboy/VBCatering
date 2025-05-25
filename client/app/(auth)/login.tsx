@@ -41,7 +41,10 @@ const login = () => {
                                 <TouchableOpacity style={gstyles.btn_primary} onPress={() => {
                                     router.push("/(auth)/auth/verify")
                                 }}>
-                                    <Text style={gstyles.t_semibold_dark}>LOGIN</Text>
+                                    <Text style={{
+                                        ...gstyles.t_semibold_dark,
+                                        paddingHorizontal : 34
+                                        }}>LOGIN</Text>
                                 </TouchableOpacity>
                                 <Spacer size={5} />
                                 <TouchableOpacity onPress={()=>{
@@ -54,7 +57,10 @@ const login = () => {
                                 <Spacer size={5} />
                                 <Text style={{...gstyles.t_subtitle}}>You dont have an account yet ?, Click Here</Text>
                                 <Spacer size={5} />
-                                <TouchableOpacity style={gstyles.btn_primary} onPress={() => {
+                                <TouchableOpacity style={{
+                                    ...gstyles.btn_primary,
+                                    paddingHorizontal : 34
+                                }} onPress={() => {
                                     router.push("/(auth)/signin")
                                 }}>
                                     <Text style={gstyles.t_semibold_dark}>CREATE NEW ACCOUNT</Text>
