@@ -19,6 +19,9 @@ const RootLayout = () => {
         <Stack.Screen name='manageannouncements' />
         <Stack.Screen name='transactionhistory' />
         <Stack.Screen name='activitylogs' />
+        <Stack.Screen name='reservation/[id]' options={{
+          headerShown : false
+        }} />
       </Stack>
     </DrawerHolder>
 

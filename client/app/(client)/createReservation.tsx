@@ -17,8 +17,8 @@ const createReservation = () => {
       <SafeAreaView style={{ flex: 1 }} collapsable={true}>
         <View style={{ width: "100%", ...gstyles.container_center }}>
           <View style={{
-            paddingVertical: 14,
-            paddingHorizontal: 14,
+            height: 60,
+            paddingHorizontal: 10,
             width: "100%",
             alignSelf: "flex-start",
             flexDirection: "row",
@@ -29,10 +29,10 @@ const createReservation = () => {
               padding: 5
             }}
               onPress={() => {
-                if(router.canGoBack()){
+                if (router.canGoBack()) {
                   router.back();
-                }else{
-                  router.navigate("/user/reservations")
+                } else {
+                  router.navigate("/admin/(tabs)/dashboard")
                 }
               }}
             >
@@ -42,8 +42,8 @@ const createReservation = () => {
           </View>
           <View style={{
             width: "100%",
-            maxWidth : 500,
-            paddingHorizontal : 20
+            maxWidth: 500,
+            paddingHorizontal: 20
           }}>
             <Text style={{ ...gstyles.t_semibold_dark, fontSize: 20 }}>{"Select Reservation Type"}</Text>
             <Spacer size={10} />
@@ -55,7 +55,7 @@ const createReservation = () => {
               renderItem={item => (
                 <TouchableOpacity
                   style={{
-                    flex : 1,
+                    flex: 1,
                     maxWidth: 500,
                     padding: 20,
                     flexDirection: "row",
@@ -63,7 +63,7 @@ const createReservation = () => {
                     backgroundColor: "#D9D9D9",
                     alignItems: "center",
                   }}
-                  onPress={()=>{
+                  onPress={() => {
                     router.push("/reservation/5338b20c-47a1-4dc0-8cb1-494926b9c025")
                   }}
                 >
@@ -77,7 +77,7 @@ const createReservation = () => {
                   />
                   <View
                     style={{
-                      flex: 1, 
+                      flex: 1,
                       marginLeft: 14,
                       flexDirection: "column"
                     }}

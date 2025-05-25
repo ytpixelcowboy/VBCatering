@@ -3,18 +3,28 @@ import { StyleSheet } from "react-native"
 export const gstyles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 18
+        padding: 24
     },
     container_center: {
         alignItems: "center",
         justifyContent: "center",
     },
-
     container_forms: {
         width: "100%",
         maxWidth: 520,
         marginTop: 20,
         alignContent: "center"
+    },
+    container_type: {
+        minWidth: 250,
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    table_cell: {
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 10,
+        paddingRight: 10,
     },
     input: {
         flex: 1,
@@ -34,7 +44,7 @@ export const gstyles = StyleSheet.create({
         minWidth: 60,
         alignSelf: "center",
         height: 50,
-        backgroundColor: "#C5D0A4",
+        backgroundColor: "#A9B091",
         borderRadius: 8,
         flexDirection: "row",
         alignItems: "center",
@@ -62,7 +72,7 @@ export const gstyles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         paddingHorizontal: 20,
-        color : "#FFFFFF"
+        color: "#FFFFFF"
     },
     btn_primary_transparent: {
         minWidth: 60,

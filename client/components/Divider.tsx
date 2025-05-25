@@ -14,6 +14,7 @@ const Divider = (props : Props) => {
         backgroundColor : props.variant === "default" ? "#B5BE99" : "#D9D9D9",
         marginTop : 10,
         marginBottom :10,
+        alignSelf: "center"
     }} />
   )
 }

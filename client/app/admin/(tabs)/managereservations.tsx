@@ -1,12 +1,12 @@
-import { FlatList, Platform, SafeAreaView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native'
+import { FlatList, Platform, SafeAreaView,Text, TouchableOpacity, useWindowDimensions, View } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { gstyles } from '@/lib/styles'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
-
+ 
 import VerticalDivider from "../../../components/VerticalDivider";
 import { router } from 'expo-router'
 import { formatTime } from '@/lib/utils'
+import { gstyles } from '@/lib/styles'
 
 const data = [
   {
@@ -65,12 +65,11 @@ const managereservations = () => {
           (
             <View style={{
               width: "100%",
-              
             }}>
               <table style={{
-                borderRadius: 8,
-                backgroundColor: "#D9D9D9",
                 tableLayout: "fixed",
+                backgroundColor: "#D9D9D9",
+                borderRadius: 8,
                 borderCollapse : "collapse"
               }}>
                 <thead style={{
@@ -78,27 +77,27 @@ const managereservations = () => {
                   ...gstyles.t_semibold,
                   fontSize: 14,
                 }}>
-                  <th style={styles.table_cell}>Status</th>
+                  <th style={gstyles.table_cell}>Status</th>
                   <th style={{
-                    ...styles.table_cell,
+                    ...gstyles.table_cell,
                     minWidth: 80
                   }}>Id</th>
-                  <th style={styles.table_cell}>Type</th>
+                  <th style={gstyles.table_cell}>Type</th>
                   <th style={{
-                    ...styles.table_cell,
+                    ...gstyles.table_cell,
                     width: 50
                   }}>Items Count</th>
                   <th style={{
-                    ...styles.table_cell,
+                    ...gstyles.table_cell,
                     minWidth: 80,
                   }}>Reserve Date</th>
-                  <th style={styles.table_cell}>Payment Status</th>
+                  <th style={gstyles.table_cell}>Payment Status</th>
                   <th style={{
-                    ...styles.table_cell,
+                    ...gstyles.table_cell,
                     minWidth: 80,
                   }}>Created at</th>
                   <th style={{
-                    ...styles.table_cell,
+                    ...gstyles.table_cell,
                     minWidth: 80,
                   }}>Actions</th>
                 </thead>
@@ -107,32 +106,33 @@ const managereservations = () => {
                 }}>
                   {
                     data?.map((e, idx) => (
-                      <tr key={`reservation_${idx}`} 
-                      style={{
+                      <tr key={`reservation_${idx}`} style={{
                         ...gstyles.t_base_dark,
                         fontSize: 14,
                         textAlign: "center",
                         flexShrink: 0,
                         textWrap: "wrap",
-                        backgroundColor : "#F9F9F9C4",
+                        backgroundColor: "#F9F9F9C4",
                       }}>
-                        <td style={styles.table_cell}>
+                        <td style={gstyles.table_cell}>
                           <Text style={{
                             ...gstyles.t_semibold_dark,
-                            backgroundColor : "#81B7656B",
+                            backgroundColor : "#A9B091",
                             padding : 14,
                             borderRadius : 25
                           }}>{e.status}</Text>
                         </td>
                         <td style={{
                           maxWidth: 150,
+                          borderLeft : "none",
+                          borderRight : "none",
                         }}>{e.id}</td>
-                        <td style={styles.table_cell}>{e.cateringType}</td>
-                        <td style={styles.table_cell}>{e.items.length}</td>
-                        <td style={styles.table_cell}>{formatTime(e.reservationDate)}</td>
-                        <td style={styles.table_cell}>{e.paymentStatus}</td>
-                        <td style={styles.table_cell}>{formatTime(e.createdAt)}</td>
-                        <td style={styles.table_cell}>
+                        <td style={gstyles.table_cell}>{e.cateringType}</td>
+                        <td style={gstyles.table_cell}>{e.items.length}</td>
+                        <td style={gstyles.table_cell}>{formatTime(e.reservationDate)}</td>
+                        <td style={gstyles.table_cell}>{e.paymentStatus}</td>
+                        <td style={gstyles.table_cell}>{formatTime(e.createdAt)}</td>
+                        <td style={gstyles.table_cell}>
                           <View style={{
                             flex: 1,
                             flexDirection: "row",
@@ -141,6 +141,7 @@ const managereservations = () => {
                           }}>
                             <TouchableOpacity style={gstyles.btn_nuetral} onPress={() => {
                               router.push(`/admin/reservation/${e.id}`)
+                              
                             }}>
                               <Text style={{ ...gstyles.t_semibold, color: "#FFFFFF" }}>Review</Text>
                             </TouchableOpacity>
@@ -165,7 +166,7 @@ const managereservations = () => {
                 height: "100%"
               }}
               contentContainerStyle={{
-                gap: 10
+                gap: 5
               }}
               data={data}
               renderItem={(e) => (
@@ -175,7 +176,7 @@ const managereservations = () => {
                 }}>
                   <View style={{
                     height: 60,
-                    backgroundColor: "#81B7656B",
+                    backgroundColor: "#A9B091",
                     borderRadius: 6,
                     flexDirection: "row",
                     alignItems: "center",
@@ -201,7 +202,7 @@ const managereservations = () => {
                     flexDirection: "row",
                     flexWrap: "wrap",
                     justifyContent: "space-between",
-                    gap : 8
+                    gap : 5
                   }}>
                     <View style={{
                       
@@ -209,7 +210,7 @@ const managereservations = () => {
                       <Text style={{ ...gstyles.t_base, fontSize: 12 }}>Reservation ID: </Text>
                       <Text style={{ ...gstyles.t_base_dark, fontSize: 14 }}>{e.item.id}</Text>
                     </View>
-                    <View style={styles.container_type}>
+                    <View style={gstyles.container_type}>
                       <MaterialIcons name='room-service' size={25} />
                       <View style={{
                         flex: 1,
@@ -219,7 +220,7 @@ const managereservations = () => {
                         <Text style={{ ...gstyles.t_base_dark, fontSize: 14 }}>{e.item.cateringType}</Text>
                       </View>
                     </View>
-                    <View style={styles.container_type}>
+                    <View style={gstyles.container_type}>
                       <MaterialIcons name='calendar-month' size={25} />
                       <View style={{
                         flex: 1,
@@ -229,7 +230,7 @@ const managereservations = () => {
                         <Text style={{ ...gstyles.t_base_dark, fontSize: 14 }}>{formatTime(e.item.reservationDate)}</Text>
                       </View>
                     </View>
-                    <View style={styles.container_type}>
+                    <View style={gstyles.container_type}>
                       <MaterialIcons name='credit-card' size={25} />
                       <View style={{
                         flex: 1,
@@ -286,17 +287,3 @@ const managereservations = () => {
 }
 
 export default managereservations
-
-const styles = StyleSheet.create({
-  container_type: {
-    minWidth: 250,
-    flexDirection: "row",
-    alignItems: "center"
-  },
-  table_cell: {
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10
-  }
-})
