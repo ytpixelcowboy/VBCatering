@@ -130,8 +130,7 @@ const dashboard = () => {
 const PartnerNotice = () => {
   return (
     <View style={{
-      flex: 1,
-      minWidth: 350,
+      minWidth: 380,
       minHeight: 600,
       gap: 18,
     }}>
@@ -139,7 +138,7 @@ const PartnerNotice = () => {
 
       <View style={{
         flex: 1,
-        backgroundColor: "#81B7656B",
+        backgroundColor: "#D9D9D9",
         borderRadius: 8
       }}>
 

@@ -2,6 +2,7 @@ import { router, SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useFonts } from 'expo-font';
 import { Platform, StatusBar } from "react-native";
+import HeaderMenu from "@/components/HeaderMenu";
 
 SplashScreen.preventAutoHideAsync();
 

@@ -56,7 +56,7 @@ const managereservations = () => {
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        padding: 18,
+        padding: 24,
         gap: 10,
       }} collapsable={true}>
         {
@@ -118,15 +118,12 @@ const managereservations = () => {
                           <Text style={{
                             ...gstyles.t_semibold_dark,
                             backgroundColor : "#A9B091",
-                            padding : 14,
+                            paddingHorizontal : 14,
+                            paddingVertical : 8,
                             borderRadius : 25
                           }}>{e.status}</Text>
                         </td>
-                        <td style={{
-                          maxWidth: 150,
-                          borderLeft : "none",
-                          borderRight : "none",
-                        }}>{e.id}</td>
+                        <td style={gstyles.table_cell}>{e.id}</td>
                         <td style={gstyles.table_cell}>{e.cateringType}</td>
                         <td style={gstyles.table_cell}>{e.items.length}</td>
                         <td style={gstyles.table_cell}>{formatTime(e.reservationDate)}</td>

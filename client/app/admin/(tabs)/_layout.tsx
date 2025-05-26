@@ -3,6 +3,7 @@ import React from 'react'
 import { Redirect, Tabs } from 'expo-router'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { Image } from 'expo-image'
+import HeaderMenu from '@/components/HeaderMenu'
 
 const RootLayout = () => {
     const width = useWindowDimensions().width;
@@ -14,12 +15,15 @@ const RootLayout = () => {
             screenOptions={{
                 tabBarActiveTintColor: "green",
                 tabBarStyle: (isWeb && width > 448) ? { display: "none" } : {},
+                headerRight: () => <HeaderMenu />
             }}>
             <Tabs.Screen name='dashboard' options={{
+                title : "Dashboard",
                 tabBarIcon: () => <MaterialIcons name='home' size={25} />,
                 tabBarLabel: "Dashboard"
             }} />
             <Tabs.Screen name='managereservations' options={{
+                title: "Manage Reservation",
                 tabBarIcon: () => <Image style={{
                     width: 25,
                     height: 25
@@ -27,6 +31,7 @@ const RootLayout = () => {
                 tabBarLabel: "Reservations"
             }} />
             <Tabs.Screen name='managefoods' options={{
+                title : "Manage Foods",
                 tabBarIcon: () => <Image style={{
                     width: 25,
                     height: 25
@@ -34,10 +39,12 @@ const RootLayout = () => {
                 tabBarLabel: "Foods"
             }} />
             <Tabs.Screen name='inbox' options={{
+                title: "Inbox",
                 tabBarIcon: () => <MaterialIcons name='inbox' size={25} />,
                 tabBarLabel: "Inbox"
             }} />
             <Tabs.Screen name='menu' options={{
+                headerShown : false,
                 tabBarIcon: () => <MaterialIcons name='grid-view' size={25} />,
                 tabBarLabel: "Menu"
             }} />
