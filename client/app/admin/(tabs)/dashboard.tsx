@@ -14,7 +14,7 @@ const dashboard = () => {
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        padding: 18,
+        padding: 24,
         gap: 5,
       }} collapsable={true}>
         <ScrollView

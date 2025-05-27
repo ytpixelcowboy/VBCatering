@@ -17,7 +17,7 @@ const TabSelector = (props: Props) => {
             height: 50,
             backgroundColor: "#D9D9D9",
             flexDirection: "row",
-            borderRadius: 14
+            borderRadius: 8
         }}>
             {
                 props.items.map((e, idx) => (
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         minWidth: 150,
         height: 50,
         backgroundColor: "#A9B091",
-        borderRadius: 14,
+        borderRadius: 8,
         alignItems: "center",
         justifyContent : "center",
         gap: 12
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         minWidth: 150,
         height: 50,
         backgroundColor: "#C5D0A400",
-        borderRadius: 14,
+        borderRadius: 8,
         alignItems: "center",
         justifyContent : "center",
         gap: 12
