@@ -66,8 +66,8 @@ const managefinance = () => {
                   <td style={{...gstyles.table_cell}}>{e?.id}</td>
                   <td style={gstyles.table_cell}>{e?.title}</td>
                   <td style={gstyles.table_cell}>{e?.debtTo.name}</td>
-                  <td style={gstyles.table_cell}>{e?.total}</td>
-                  <td style={gstyles.table_cell}>{e?.balance}</td>
+                  <td style={gstyles.table_cell}>{`${e?.total} PHP`}</td>
+                  <td style={gstyles.table_cell}>{`${e?.balance} PHP`}</td>
                   <td style={gstyles.table_cell}>{formatTime(e?.paymentDue || 0)}</td>
                   <td style={gstyles.table_cell}>{formatTime(e?.createdAt || 0)}</td>
                   <td style={gstyles.table_cell}>

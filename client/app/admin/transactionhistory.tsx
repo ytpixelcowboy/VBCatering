@@ -4,20 +4,57 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { gstyles } from '@/lib/styles'
 import { formatTime } from '@/lib/utils'
 import { router } from 'expo-router'
+import TruncatedText from '@/components/TruncatedText'
+import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 
 const data = [
   {
-    id : 1,
-    type : "received",
-    amount : 65890,
-    source : "GCASH (GXI)",
-    reservationId : "",
-    sender : {
-      id : "",
-      name : ""
+    id: 1,
+    type: "received",
+    message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+    amount: 65890,
+    source: "GCASH (GXI)",
+    reservationRef: {
+      id: "5338b20c-47a1-4dc0-8cb1-494926b9c025",
+      name: "Catering + Event"
     },
-    createdAt : 0
-
+    sender: {
+      id: "",
+      name: ""
+    },
+    createdAt: 1747879617
+  },
+  {
+    id: 2,
+    type: "refunded",
+    message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+    amount: 45412,
+    source: "GCASH (GXI)",
+    reservationRef: {
+      id: "5338b20c-47a1-4dc0-8cb1-494926b9c025",
+      name: "Catering + Event"
+    },
+    sender: {
+      id: "",
+      name: ""
+    },
+    createdAt: 1747879617
+  },
+  {
+    id: 3,
+    type: "refunded-overpayed",
+    message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+    amount: 400,
+    source: "GCASH (GXI)",
+    reservationRef: {
+      id: "5338b20c-47a1-4dc0-8cb1-494926b9c025",
+      name: "Catering + Event"
+    },
+    sender: {
+      id: "",
+      name: ""
+    },
+    createdAt: 1747879617
   }
 ]
 
@@ -41,11 +78,10 @@ const transactionhistory = () => {
             fontSize: 14,
           }}>
             <th style={{ ...gstyles.table_cell, minWidth: 60 }}>ID</th>
-            <th style={gstyles.table_cell}>Title</th>
-            <th style={{ ...gstyles.table_cell }}>Charge To</th>
-            <th style={{ ...gstyles.table_cell }}>Grand Total</th>
-            <th style={{ ...gstyles.table_cell, }}>Remaining Balance</th>
-            <th style={gstyles.table_cell}>Due At</th>
+            <th style={{ ...gstyles.table_cell }}>Message</th>
+            <th style={{ ...gstyles.table_cell }}>Reservation Ref</th>
+            <th style={{ ...gstyles.table_cell, }}>Amount</th>
+            <th style={gstyles.table_cell}>Source</th>
             <th style={{ ...gstyles.table_cell }}>Created At</th>
             <th style={{ ...gstyles.table_cell }}>Actions</th>
           </thead>
@@ -63,11 +99,29 @@ const transactionhistory = () => {
                   backgroundColor: "#F9F9F9C4",
                 }}>
                   <td style={{ ...gstyles.table_cell }}>{e?.id}</td>
-                  <td style={gstyles.table_cell}>{e?.title}</td>
-                  <td style={gstyles.table_cell}>{e?.debtTo.name}</td>
-                  <td style={gstyles.table_cell}>{e?.total}</td>
-                  <td style={gstyles.table_cell}>{e?.balance}</td>
-                  <td style={gstyles.table_cell}>{formatTime(e?.paymentDue || 0)}</td>
+                  <td style={{ ...gstyles.table_cell }}>
+                    <View style={{ alignItems: "center", flexDirection: "row", gap: 10 }}>
+                      {
+                        e.type === "received" ?
+                        <MaterialIcons name='arrow-forward' size={35} />
+                        :
+                        <MaterialIcons name='arrow-upward' size={35} />
+                      }
+                      <View style={{ flex: 1 }}>
+                        <Text style={{ ...gstyles.t_bold_dark, fontSize: 14 }}>{e?.type}</Text>
+                        <TruncatedText style={{ textAlign: "left" }} size={100} content={e?.message} />
+                      </View>
+                    </View>
+
+                  </td>
+                  <td style={gstyles.table_cell}>
+                    <View>
+                      <Text style={{ ...gstyles.t_semibold, fontSize: 12 }}>{e?.reservationRef.name}</Text>
+                      <Text style={{ ...gstyles.t_base, textDecorationLine: "underline", fontSize: 12 }}>{e?.reservationRef.id}</Text>
+                    </View>
+                  </td>
+                  <td style={gstyles.table_cell}>{`${e?.amount} PHP`}</td>
+                  <td style={gstyles.table_cell}>{e.source}</td>
                   <td style={gstyles.table_cell}>{formatTime(e?.createdAt || 0)}</td>
                   <td style={gstyles.table_cell}>
                     <View style={{
