@@ -69,7 +69,7 @@ const root = () => {
         </Modal>
 
         <ScrollView style={{
-          width: "100%",
+          flex : 1,
           position: "relative"
         }}
           nestedScrollEnabled={true}

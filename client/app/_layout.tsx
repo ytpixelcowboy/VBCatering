@@ -1,10 +1,11 @@
 import { router, SplashScreen, Stack } from "expo-router";
-import { useEffect } from "react";
+import { createContext, useEffect } from "react";
 import { useFonts } from 'expo-font';
 import { Platform, StatusBar } from "react-native";
-import HeaderMenu from "@/components/HeaderMenu";
 
 SplashScreen.preventAutoHideAsync();
+
+export const UserContext = createContext("user");
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -13,16 +14,8 @@ export default function RootLayout() {
     "poppins-semibold": require('../assets/fonts/Poppins-SemiBold.ttf'),
     "poppins-bold": require('../assets/fonts/Poppins-Bold.ttf'),
   });
-
-
-
+  
   useEffect(() => {
-    /*
-    if (Platform.OS == "web") {
-      router.replace("/(auth)/login")
-      return;
-    }
-    */
 
     if (loaded) {
       SplashScreen.hideAsync();

@@ -13,9 +13,9 @@ const RootLayout = () => {
         <Tabs
             safeAreaInsets={{ top: 10 }}
             screenOptions={{
+                headerShown : false,
                 tabBarActiveTintColor: "green",
-                tabBarStyle: (isWeb && width > 448) ? { display: "none" } : {},
-                headerRight: () => <HeaderMenu />
+                tabBarStyle: (isWeb && width > 448) ? { display: "none" } : {}
             }}>
             <Tabs.Screen name='dashboard' options={{
                 title : "Dashboard",

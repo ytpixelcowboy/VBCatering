@@ -5,6 +5,7 @@ import { gstyles } from '@/lib/styles';
 import { IDrawerItem } from '@/lib/types';
 import { Image } from 'expo-image';
 import Spacer from './Spacer';
+import { usePathname } from 'expo-router';
 
 type Props = {
     children?: React.ReactNode,
@@ -17,6 +18,7 @@ const DrawerHolder = (props: Props) => {
     const isWeb = Platform.OS == "web";
     const width = useWindowDimensions().width;
 
+    /*
     const uri = useSegments();
 
     let pathName = uri.reverse()[0] as string || props.drawerItems[0].name;
@@ -24,6 +26,14 @@ const DrawerHolder = (props: Props) => {
     if(!pathName){
         pathName = props.drawerItems[0].name;
     }
+        */
+
+   
+
+    const pathname = usePathname();
+    const pathSegments = pathname.split("/").filter(Boolean);
+    const pathName = pathSegments[pathSegments.length - 1]; // This gives the actual screen name
+
 
     console.log(pathName)
 

@@ -5,25 +5,25 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { gstyles } from '@/lib/styles';
 import VerticalDivider from './VerticalDivider';
 
-type Props = {
-    headerLeft?: string | React.ComponentType;
-    headerTitle?: string | React.ComponentType;
-    headerright?: string | React.ComponentType;
-}
-
-const HeaderMenu = () => {
+const WebHeader = () => {
     const width = useWindowDimensions().width;
 
-    if(width < 920){
+    if(width < 448){
         return <></>
     }
 
     return (
         <View style={{
-            height: "100%",
+            width : "100%",
+            height: 65,
             alignSelf: "flex-start",
             flexDirection: "row",
             alignItems: "center",
+            backgroundColor : "white",
+            justifyContent : "flex-end",
+            shadowColor: "#00000045",
+            shadowRadius: 5,
+            shadowOffset: { width: 0, height: 2 },
             gap: 15
         }}>
             <MaterialIcons name='light-mode' size={25} />
@@ -51,6 +51,4 @@ const HeaderMenu = () => {
     )
 }
 
-export default HeaderMenu
-
-const styles = StyleSheet.create({})
+export default WebHeader

@@ -2,18 +2,16 @@ import React, { useEffect } from 'react'
 import { router, Stack, useSegments } from 'expo-router'
 import { DRAWERITEM_ADMIN, DRAWERITEM_CLIENT } from '@/lib/const'
 import DrawerHolder from '@/components/DrawerHolder'
-import HeaderMenu from '@/components/HeaderMenu'
+import WebHeader from '@/components/HeaderMenu'
 
 const RootLayout = () => {
   return (
     <DrawerHolder
       drawerItems={DRAWERITEM_ADMIN}>
       <Stack screenOptions={{
-        headerRight: () => <HeaderMenu />   
+        header : ()=> <WebHeader />
       }}>
-        <Stack.Screen name='(tabs)' options={{
-          headerShown: false
-        }} />
+        <Stack.Screen name='(tabs)'/>
         <Stack.Screen name='manageaccounts' options={{
           title : "Manage Accounts"
         }}/>
