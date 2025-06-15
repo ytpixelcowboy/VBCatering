@@ -9,6 +9,7 @@ import { formatTime } from '@/lib/utils'
 import { gstyles } from '@/lib/styles'
 import TabSelector from '@/components/TabSelector';
 import ViewType from '@/components/ViewType';
+import FilterDropdown from '@/components/FilterDropdown';
 
 const data = [
   {
@@ -62,11 +63,23 @@ const managereservations = () => {
         <View style={{
           width: "100%",
           flexDirection: "row",
-          height: 50
+          height: 50,
+          justifyContent: "space-between",
         }}>
+          <FilterDropdown
+          style={{
+            zIndex : 10,
+          }}
+          isFocus={true}
+          displayValue={''} 
+          onPress={()=>{
 
+          }}
+
+          >
+            
+          </FilterDropdown>
           <ViewType selected={viewType} showTitle={false} onSelect={setViewType} />
-
         </View>
 
         {
