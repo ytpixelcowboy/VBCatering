@@ -1,7 +1,7 @@
 export type IFilterData =  {
     id : string | number,
     title : string,
-    image? : string,
+    image? : string | NodeJS.Require
 }
 
 export type IDrawerItem = {

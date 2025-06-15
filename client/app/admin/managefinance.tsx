@@ -7,18 +7,18 @@ import { router } from 'expo-router'
 
 const data = [
   {
-    id : "5338b20c-47a1-4dc0-8cb1-494926b9c025",
-    reservationId : "5338b20c-47a1-4dc0-8cb1-494926b9c025",
-    title : "Catering + Event",
-    debtTo : {
-      userId : "5338b20c-47a1-4dc0-8cb1-494926b9c020",
-      name : "Elbert Rosales"
+    id: "5338b20c-47a1-4dc0-8cb1-494926b9c025",
+    reservationId: "5338b20c-47a1-4dc0-8cb1-494926b9c025",
+    title: "Catering + Event",
+    debtTo: {
+      userId: "5338b20c-47a1-4dc0-8cb1-494926b9c020",
+      name: "Elbert Rosales"
     },
-    total : 65005,
-    balance : 65005,
-    paymentDue : 1747979617,
-    lastModifiedAt : 1747879617,
-    createdAt : 1747879617
+    total: 65005,
+    balance: 65005,
+    paymentDue: 1747979617,
+    lastModifiedAt: 1747879617,
+    createdAt: 1747879617
   }
 ]
 
@@ -41,8 +41,7 @@ const managefinance = () => {
             ...gstyles.t_semibold,
             fontSize: 14,
           }}>
-            <th style={{...gstyles.table_cell, minWidth : 60}}>ID</th>
-            <th style={gstyles.table_cell}>Title</th>
+            <th style={{ ...gstyles.table_cell, minWidth: 60 }}>ID</th>
             <th style={{ ...gstyles.table_cell }}>Charge To</th>
             <th style={{ ...gstyles.table_cell }}>Grand Total</th>
             <th style={{ ...gstyles.table_cell, }}>Remaining Balance</th>
@@ -63,8 +62,12 @@ const managefinance = () => {
                   textWrap: "wrap",
                   backgroundColor: "#F9F9F9C4",
                 }}>
-                  <td style={{...gstyles.table_cell}}>{e?.id}</td>
-                  <td style={gstyles.table_cell}>{e?.title}</td>
+                  <td style={{ ...gstyles.table_cell }}>
+                    <View>
+                      <Text style={{ ...gstyles.t_semibold, fontSize: 14 }}>{e?.title}</Text>
+                      <Text style={{ ...gstyles.t_base, textDecorationLine: "underline", fontSize: 14 }}>{e?.id}</Text>
+                    </View>
+                  </td>
                   <td style={gstyles.table_cell}>{e?.debtTo.name}</td>
                   <td style={gstyles.table_cell}>{`${e?.total} PHP`}</td>
                   <td style={gstyles.table_cell}>{`${e?.balance} PHP`}</td>
@@ -77,7 +80,7 @@ const managefinance = () => {
                       gap: 10,
                       justifyContent: "center",
                     }}>
-                      <TouchableOpacity style={{...gstyles.btn_nuetral, paddingHorizontal : 34}} onPress={() => {
+                      <TouchableOpacity style={{ ...gstyles.btn_nuetral, paddingHorizontal: 34 }} onPress={() => {
                         router.push(`/admin/manageaccount/${e.id}`)
                       }}>
                         <Text style={{ ...gstyles.t_semibold, color: "#FFFFFF" }}>Edit</Text>

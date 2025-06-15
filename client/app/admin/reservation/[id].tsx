@@ -74,27 +74,50 @@ const reservation = () => {
                     <View style={{
                         width: "100%",
                         flexDirection: "row",
-                        alignItems: "flex-start",
+                        alignItems: "center",
                         flexWrap: "wrap",
                         justifyContent: "space-between",
                         gap: 18
                     }}>
+
                         <View style={{
-                            gap: 10
+                            height: 60,
+                            alignSelf: "flex-start",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            gap: 5
                         }}>
-                            <View style={{
-                                flexDirection: "row",
-                                alignItems: "center",
-                                gap: 13
-                            }}>
-                                <MaterialIcons name='timer' size={35} color={"#303227"} />
-                                <Text style={{ ...gstyles.t_bold_dark, fontSize: 34, color: "#303227" }}>Pending</Text>
-                            </View>
-                            <Text style={{ ...gstyles.t_base, fontSize: 12, color: "#FFFFFF", backgroundColor: "#303227", borderRadius: 25, paddingHorizontal: 14, paddingVertical: 6 }}>{`ID: #${id}`}</Text>
+                            <TouchableOpacity style={{
+                                padding: 5
+                            }}
+                                onPress={() => {
+                                    if (router.canGoBack()) {
+                                        router.back();
+                                    } else {
+                                        router.navigate("/admin/(tabs)/dashboard")
+                                    }
+                                }}
+                            >
+                                <MaterialIcons name='arrow-back' size={28} />
+                            </TouchableOpacity>
+                            <Text style={{ ...gstyles.t_semibold_dark, fontSize: 14 }}>{"Back"}</Text>
                         </View>
                         <ActionButtons />
                     </View>
-                    <Spacer size={20} />
+                    <View style={{
+                        gap: 10
+                    }}>
+                        <View style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            gap: 13
+                        }}>
+                            <MaterialIcons name='timer' size={35} color={"#303227"} />
+                            <Text style={{ ...gstyles.t_bold_dark, fontSize: 34, color: "#303227" }}>Pending</Text>
+                        </View>
+                        <Text style={{ ...gstyles.t_base, alignSelf: "flex-start", width: "auto", fontSize: 12, color: "#FFFFFF", backgroundColor: "#303227", borderRadius: 25, paddingHorizontal: 14, paddingVertical: 6 }}>{`ID: #${id}`}</Text>
+                    </View>
+                    <Spacer size={10} />
                     <View style={{
                         flexDirection: "row",
                         flexWrap: "wrap",
@@ -153,7 +176,6 @@ const reservation = () => {
                     </View>
                     <Spacer size={15} />
                     <TabSelector selected={tabSelected} items={TabFilters} onSelect={(e) => setTabSelected(e)} />
-
                 </View>
 
             </SafeAreaView>

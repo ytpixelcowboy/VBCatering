@@ -36,7 +36,7 @@ const dashboard = () => {
               flex: 1,
               minWidth: 200,
               minHeight: 125,
-              backgroundColor: "#FFE082",
+              backgroundColor: "#D9D9D9",
               borderRadius: 8,
               padding: 18,
               gap: 5
@@ -57,7 +57,7 @@ const dashboard = () => {
               flex: 1,
               minWidth: 200,
               minHeight: 125,
-              backgroundColor: "#3CAD0063",
+              backgroundColor: "#D9D9D9",
               borderRadius: 8,
               padding: 18,
               gap: 5
@@ -78,7 +78,7 @@ const dashboard = () => {
               flex: 1,
               minWidth: 200,
               minHeight: 125,
-              backgroundColor: "#0021AD63",
+              backgroundColor: "#D9D9D9",
               borderRadius: 8,
               padding: 18,
               gap: 5
